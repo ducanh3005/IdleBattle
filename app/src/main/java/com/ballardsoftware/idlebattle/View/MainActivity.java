@@ -1,7 +1,9 @@
-package com.ballardsoftware.idlebattle;
+package com.ballardsoftware.idlebattle.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ballardsoftware.idlebattle.R;
 
 public class MainActivity extends AppCompatActivity {
 
