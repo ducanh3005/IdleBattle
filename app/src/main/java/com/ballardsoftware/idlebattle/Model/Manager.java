@@ -2,18 +2,18 @@ package com.ballardsoftware.idlebattle.Model;
 
 public class Manager extends AbstractModel {
     
-    public Manager(String name, long basePrice, long level,
-                   long upgradeCost, long income) {
+    public Manager(String name, double basePrice, int level,
+                   double upgradeCost, double income) {
         super(name, basePrice, level, upgradeCost, income);
     }
 
     @Override
-    public long abstractCalculateUpgradePrice() {
+    double abstractCalculateUpgradePrice(double numberToUpgrade) {
         return 0;
     }
 
     @Override
-    public long abstractCalculateIncrease() {
+    double abstractCalculateIncrease(double numberToUpgrade) {
         return 0;
     }
 }

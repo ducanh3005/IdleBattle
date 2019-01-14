@@ -8,12 +8,12 @@ public class Gamer extends AbstractModel {
     }
 
     @Override
-    public double abstractCalculateUpgradePrice() {
+    public double abstractCalculateUpgradePrice(double numberToUpgrade) {
         return 0;
     }
 
     @Override
-    public double abstractCalculateIncrease() {
+    public double abstractCalculateIncrease(double numberToUpgrade) {
         return 0;
     }
 }

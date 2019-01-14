@@ -1,6 +1,6 @@
 package com.ballardsoftware.idlebattle.Model;
 
-import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
+//import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
 
 public abstract class AbstractModel {
 
@@ -9,11 +9,12 @@ public abstract class AbstractModel {
     private double basePrice;
     private int level;
     private double upgradeCost;
-    private int amount;
+    //private int amount;
+    private double income;
     //private final double MULTIPLIER = 1.12;
 
-    public AbstractModel(String name, double basePrice, int level, double upgradeCost,
-                         double income) {
+    AbstractModel(String name, double basePrice, int level,
+                  double upgradeCost, double income) {
         this.name = name;
         this.basePrice = basePrice;
         this.level = level;
@@ -28,8 +29,6 @@ public abstract class AbstractModel {
     public void setIncome(double income) {
         this.income = income;
     }
-
-    private double income;
 
     public double getUpgradeCost() {
         return upgradeCost;
@@ -63,9 +62,6 @@ public abstract class AbstractModel {
         this.level = level;
     }
 
-    public double increaseLevel(int level) {
-        return level++;
-    }
 
 
 
@@ -74,11 +70,11 @@ public abstract class AbstractModel {
 
         //don't use amount -> just call this function x number of times
         //check if total > cost
-        //todo: synchronization for total //max is about 3000 -> 3138
+        //todo: synchronization for total //max level is about 3000 -> 3138
         synchronized (this) {
-            if(total > upgradeCost) {
+            if(Stat.getCurrentTotal() > upgradeCost) {
                 //subtract cost from total
-                total = total - upgradeCost;
+                Stat.setCurrentTotal(Stat.getCurrentTotal() - upgradeCost);
                 //increase level
                 level++;
                 //increase upgrade cost
@@ -92,15 +88,17 @@ public abstract class AbstractModel {
     }
 
     //function to call when the amount button is clicked
-    public int getAmount() {
-        return amount;
-    }
+    //public int getAmount() {
+    //    return amount;
+    //}
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+    //public void setAmount(int amount) {
+     //   this.amount = amount;
+    //}
 
-    abstract double calculateMaxNumber();
+    //max number that can be upgraded
+    //todo: amounts are only used for weapons
+    //abstract double calculateMaxNumber();
 
     //numberToUpgrade was maxNumber, but this can be used for
     // 1, 10, 100, or max (calculateMaxNumber()) instead
