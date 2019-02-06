@@ -6,6 +6,9 @@ import com.ballardsoftware.idlebattle.Model.AbstractModel;
 import com.ballardsoftware.idlebattle.Model.Stat;
 import com.ballardsoftware.idlebattle.Model.Weapon;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class IdleViewModel {
 
 
@@ -20,15 +23,20 @@ public class IdleViewModel {
     //actual animation is in the view weapons_fragment.xml and handled
     //in WeaponsFragment.java
 
-    void progress() {
+
+    //void progress(Weapon weapon) {
         //run progress bar according to timer (listener)
+
 
 
         //after timer, add income to total
 
+
         //reset animation to 0 (reset time to 0)
-    }
+    //}
     //start timer
+
+
 
 
 

@@ -2,6 +2,9 @@ package com.ballardsoftware.idlebattle.Model;
 
 //import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Weapon extends AbstractModel {
 
 
@@ -9,6 +12,7 @@ public class Weapon extends AbstractModel {
     //todo - different weapons are more efficient
     private final double MULTIPLIER = 1.12;
     private double rate = 4;
+    //upgradeTime is milliseconds
     private long upgradeTime;
 
     public Weapon(String name, double basePrice, int level, double upgradeCost,
@@ -50,12 +54,26 @@ public class Weapon extends AbstractModel {
     }
 
     //when to progress (total += income) and when to use weaponTime
-    public double weaponProgress(long time) {
+    public double addIncome() {
 
         synchronized (this) {
             Stat.setCurrentTotal(Stat.getCurrentTotal() + getIncome());
             return Stat.getCurrentTotal();
         }
+    }
+
+    //Todo: custom progress bar in View (xml)
+    void weaponProgress() {
+        //runs addIncome function after time
+
+        final Timer progressTime = new Timer();
+        progressTime.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                addIncome();
+            }
+        }, 2*60*upgradeTime);
+
     }
 
     //ng+ = 3.5

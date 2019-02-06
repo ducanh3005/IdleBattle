@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape
+            android:tint="#444444"
+            android:centerY="0.75"
+            android:angle="270">
+
+            <!--444444-->
+
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape
+                android:centerY="0.75"
+                android:tint="#125688"
+                android:angle="270">
+
+                <!--999999-->
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

@@ -8,4 +8,30 @@
         blank
         fragment
     </string>
+
+    <string name="weapons">Weapons</string>
+    <string name="gamers">Gamers</string>
+    <string name="managers">Managers</string>
+    <string name="achievements">Achievements</string>
+    <string name="stats">Stats</string>
+
+    <!--Weapons-->
+    <string name="weapon1">Fist</string>
+    <string name="weapon2">Boxing Gloves</string>
+    <string name="weapon3">Knife</string>
+    <string name="weapon4">Pistol</string>
+    <string name="weapon5">Shotgun</string>
+    <string name="weapon6">Machine Gun</string>
+    <string name="weapon7">Sniper Rifle</string>
+    <string name="weapon8">Grenade Launcher</string>
+    <string name="weapon9">Rocket Launcher</string>
+    <string name="weapon10">Laser Gun</string>
+
+    <string name="buy">Buy</string>
+    <string name="level">Lvl\u0020</string>
+
+    <string name="buyOne">Buy 1x</string>
+    <string name="buyTen">Buy 10x</string>
+    <string name="buyOneHundred">Buy 100x</string>
+    <string name="buyMax">Buy Max</string>
 </resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/buttonColor"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <Button
+        android:id="@+id/upgrade_weapon_btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:paddingBottom="15dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/weapon_upgrade_price_1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:gravity="bottom"
+        android:paddingBottom="5dp"/>
+
+</FrameLayout>
