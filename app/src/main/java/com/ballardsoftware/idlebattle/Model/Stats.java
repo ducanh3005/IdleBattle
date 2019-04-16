@@ -1,21 +1,25 @@
 package com.ballardsoftware.idlebattle.Model;
 
-public class Stat {
+public class Stats {
 
-    private static double currentTotal;
+    private static double currentTotal = 0;
     private static double totalSinceReset;
     private static double totalLifetime;
     private static double prestigeXP;
+    private static String test = "0";
     //number of days played
     //date started
     //total upgrades for each weapon?
+    public static String getTest() {
+        return test;
+    }
 
     public static double getCurrentTotal() {
         return currentTotal;
     }
 
     public static void setCurrentTotal(double currentTotal) {
-        Stat.currentTotal = currentTotal;
+        Stats.currentTotal = currentTotal;
     }
 
     public static double getTotalSinceReset() {
@@ -23,7 +27,7 @@ public class Stat {
     }
 
     public static void setTotalSinceReset(double totalSinceReset) {
-        Stat.totalSinceReset = totalSinceReset;
+        Stats.totalSinceReset = totalSinceReset;
     }
 
     public static double getTotalLifetime() {
@@ -31,7 +35,7 @@ public class Stat {
     }
 
     public static void setTotalLifetime(double totalLifetime) {
-        Stat.totalLifetime = totalLifetime;
+        Stats.totalLifetime = totalLifetime;
     }
 
     public static double getPrestigeXP() {
@@ -39,7 +43,7 @@ public class Stat {
     }
 
     public static void setPrestigeXP(double prestigeXP) {
-        Stat.prestigeXP = prestigeXP;
+        Stats.prestigeXP = prestigeXP;
     }
 
 

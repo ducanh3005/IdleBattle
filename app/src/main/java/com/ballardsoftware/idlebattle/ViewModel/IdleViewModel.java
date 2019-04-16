@@ -1,40 +1,37 @@
 package com.ballardsoftware.idlebattle.ViewModel;
 
-import android.widget.Toast;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
 
-import com.ballardsoftware.idlebattle.Model.AbstractModel;
-import com.ballardsoftware.idlebattle.Model.Stat;
+import com.ballardsoftware.idlebattle.Model.Stats;
 import com.ballardsoftware.idlebattle.Model.Weapon;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Locale;
 
-public class IdleViewModel {
+public class IdleViewModel extends ViewModel {
 
 
     public static int newGame;
     public static int amount;
-
-
-    //if not weapon, build weapon
-
-
-    //todo: progress
-    //actual animation is in the view weapons_fragment.xml and handled
-    //in WeaponsFragment.java
-
-
-    //void progress(Weapon weapon) {
-        //run progress bar according to timer (listener)
+    private static Weapon[] weaponsArray;
 
 
 
-        //after timer, add income to total
+    private static MutableLiveData<String> currentTotal;
+
+    public MutableLiveData<String> getCurrentTotal() {
+        if(currentTotal == null) {
+            currentTotal = new MutableLiveData<String>();
+        }
+        return currentTotal;
+    }
+
+    public void setCurrentTotal(MutableLiveData<String> currentTotal) {
+        IdleViewModel.currentTotal = currentTotal;
+    }
 
 
-        //reset animation to 0 (reset time to 0)
-    //}
-    //start timer
+
 
 
 
@@ -42,23 +39,41 @@ public class IdleViewModel {
 
     //todo: calculate progress on game closed (new function?)
     void closeGame() {
+        //save weapons array
         //save values
         //save current time
     }
 
-    void startGame() {
+    public static void startGame() {
+        //load from save
+        //load in weapons array
+        if (weaponsArray == null) {
+            initializeWeapons();
+        }
+
+        //todo works on changing income - doesn't change incomeNumber
+        //.setIncome() also changes incomeNumber
+        //weaponsArray[0].setIncome(5);
         //get current time
         //calculate amounts earned from last time played for each weapon
+    }
+
+    //called in ProgressBarButton after the progress countdown is finished
+    public static void progressFinished(int weaponNumber) {
+        double income = weaponsArray[weaponNumber].getIncome();
+        Stats.setCurrentTotal(Stats.getCurrentTotal() + income);
+        currentTotal.setValue(String.format(Locale.getDefault(), "%.0f",
+                Stats.getCurrentTotal()));
     }
 
 
     //todo: upgrade
     int upgradeWeapon(Weapon weapon){
         //if total greater than cost
-        if(Stat.getCurrentTotal() > weapon.getUpgradeCost()) {
+        if(Stats.getCurrentTotal() > weapon.getUpgradeCost()) {
 
             //upgrade cost is subtracted from total
-            Stat.setCurrentTotal(Stat.getCurrentTotal() -
+            Stats.setCurrentTotal(Stats.getCurrentTotal() -
                     weapon.getUpgradeCost());
 
             //calculate new income
@@ -133,7 +148,7 @@ public class IdleViewModel {
     //reset total and levels to 0
     //increase multiplier
 
-    private Weapon[] initializeWeapons() {
+    private static Weapon[] initializeWeapons() {
 
         /*
         *  basePrice is the base upgrade price
@@ -143,7 +158,8 @@ public class IdleViewModel {
         *
         */
 
-        Weapon weaponsArray [] = new Weapon[10];
+        //Weapon [] weaponsArray = new Weapon[10];
+        weaponsArray = new Weapon[10];
 
         //for use with weapon constructors
         String weaponName_1 = "Fist";
@@ -190,38 +206,45 @@ public class IdleViewModel {
         long weaponTime_9 = 780000;   // 13 m
         long weaponTime_10 = 1200000; // 20 m
 
+        MutableLiveData<String> incomeNumber_1 = new MutableLiveData<>();
+        incomeNumber_1.setValue(String.format(Locale.getDefault(),
+                "%.0f", baseWeaponIncome_1));
+
+
+
         //todo: is upgradeCost necessary?
         //String name, double basePrice, int level,
         // double upgradeCost, double income
         weaponsArray[0] = new Weapon(weaponName_1, baseUpgradePrice_1,
-                0, baseUpgradePrice_1, baseWeaponIncome_1, weaponTime_1);
+                0, baseUpgradePrice_1, baseWeaponIncome_1, incomeNumber_1,
+                weaponTime_1);
 
         weaponsArray[1] = new Weapon(weaponName_2, baseUpgradePrice_2,
-                0, baseUpgradePrice_2, baseWeaponIncome_2, weaponTime_2);
+                0, baseUpgradePrice_2, baseWeaponIncome_2, incomeNumber_1,weaponTime_2);
 
         weaponsArray[2] = new Weapon(weaponName_3, baseUpgradePrice_3,
-                0, baseUpgradePrice_3, baseWeaponIncome_3, weaponTime_3);
+                0, baseUpgradePrice_3, baseWeaponIncome_3, incomeNumber_1,weaponTime_3);
 
         weaponsArray[3] = new Weapon(weaponName_4, baseUpgradePrice_4,
-                0, baseUpgradePrice_4, baseWeaponIncome_4, weaponTime_4);
+                0, baseUpgradePrice_4, baseWeaponIncome_4, incomeNumber_1,weaponTime_4);
 
         weaponsArray[4] = new Weapon(weaponName_5, baseUpgradePrice_5,
-                0, baseUpgradePrice_5, baseWeaponIncome_5, weaponTime_5);
+                0, baseUpgradePrice_5, baseWeaponIncome_5, incomeNumber_1,weaponTime_5);
 
         weaponsArray[5] = new Weapon(weaponName_6, baseUpgradePrice_6,
-                0, baseUpgradePrice_6, baseWeaponIncome_6, weaponTime_6);
+                0, baseUpgradePrice_6, baseWeaponIncome_6, incomeNumber_1,weaponTime_6);
 
         weaponsArray[6] = new Weapon(weaponName_7, baseUpgradePrice_7,
-                0, baseUpgradePrice_7, baseWeaponIncome_7, weaponTime_7);
+                0, baseUpgradePrice_7, baseWeaponIncome_7, incomeNumber_1,weaponTime_7);
 
         weaponsArray[7] = new Weapon(weaponName_8, baseUpgradePrice_8,
-                0, baseUpgradePrice_8, baseWeaponIncome_8, weaponTime_8);
+                0, baseUpgradePrice_8, baseWeaponIncome_8, incomeNumber_1,weaponTime_8);
 
         weaponsArray[8] = new Weapon(weaponName_9, baseUpgradePrice_9,
-                0, baseUpgradePrice_9, baseWeaponIncome_9, weaponTime_9);
+                0, baseUpgradePrice_9, baseWeaponIncome_9, incomeNumber_1,weaponTime_9);
 
         weaponsArray[9] = new Weapon(weaponName_10, baseUpgradePrice_10,
-                0, baseUpgradePrice_10, baseWeaponIncome_10, weaponTime_10);
+                0, baseUpgradePrice_10, baseWeaponIncome_10, incomeNumber_1,weaponTime_10);
 
         return  weaponsArray;
     }

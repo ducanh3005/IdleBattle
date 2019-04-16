@@ -27,9 +27,14 @@
     <string name="weapon9">Rocket Launcher</string>
     <string name="weapon10">Laser Gun</string>
 
+    <!--Buy Button-->
     <string name="buy">Buy</string>
-    <string name="level">Lvl\u0020</string>
 
+    <!--Upgrade Button-->
+    <!--<string name="level">Lvl\u0020</string>-->
+    <string name="level">Lvl %1$s</string>
+
+    <!--Buy x Buttons-->
     <string name="buyOne">Buy 1x</string>
     <string name="buyTen">Buy 10x</string>
     <string name="buyOneHundred">Buy 100x</string>

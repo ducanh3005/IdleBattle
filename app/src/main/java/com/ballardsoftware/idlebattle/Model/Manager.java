@@ -1,10 +1,12 @@
 package com.ballardsoftware.idlebattle.Model;
 
+import android.arch.lifecycle.MutableLiveData;
+
 public class Manager extends AbstractModel {
     
     public Manager(String name, double basePrice, int level,
-                   double upgradeCost, double income) {
-        super(name, basePrice, level, upgradeCost, income);
+                   double upgradeCost, double income, MutableLiveData<String> incomeNumber) {
+        super(name, basePrice, level, upgradeCost, income, incomeNumber);
     }
 
     @Override

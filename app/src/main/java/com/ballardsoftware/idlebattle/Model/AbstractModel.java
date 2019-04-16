@@ -2,6 +2,10 @@ package com.ballardsoftware.idlebattle.Model;
 
 //import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
 
+import android.arch.lifecycle.MutableLiveData;
+
+import java.util.Locale;
+
 public abstract class AbstractModel {
 
 
@@ -12,14 +16,17 @@ public abstract class AbstractModel {
     //private int amount;
     private double income;
     //private final double MULTIPLIER = 1.12;
+    private MutableLiveData<String> incomeNumber;
 
+    //double income
     AbstractModel(String name, double basePrice, int level,
-                  double upgradeCost, double income) {
+                  double upgradeCost, double income, MutableLiveData<String> incomeNumber) {
         this.name = name;
         this.basePrice = basePrice;
         this.level = level;
         this.upgradeCost = upgradeCost;
         this.income = income;
+        this.incomeNumber = incomeNumber;
     }
 
     public double getIncome() {
@@ -28,6 +35,8 @@ public abstract class AbstractModel {
 
     public void setIncome(double income) {
         this.income = income;
+        //todo why?
+        incomeNumber.setValue(String.format(Locale.getDefault(), "%.0f", income));
     }
 
     public double getUpgradeCost() {
@@ -72,9 +81,9 @@ public abstract class AbstractModel {
         //check if total > cost
         //todo: synchronization for total //max level is about 3000 -> 3138
         synchronized (this) {
-            if(Stat.getCurrentTotal() > upgradeCost) {
+            if(Stats.getCurrentTotal() > upgradeCost) {
                 //subtract cost from total
-                Stat.setCurrentTotal(Stat.getCurrentTotal() - upgradeCost);
+                Stats.setCurrentTotal(Stats.getCurrentTotal() - upgradeCost);
                 //increase level
                 level++;
                 //increase upgrade cost

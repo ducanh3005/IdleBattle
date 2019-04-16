@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressBarButton">
+        <attr name="progressBar" format="string"/>
+        <attr name="progressText" format="string"/>
+        <attr name="weaponIncome" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="UpgradeButton">
+        <attr name="upgradeWeaponBtn" format="string"/>
+        <attr name="upgradeWeaponPrice" format="string"/>
+        <attr name="weaponLevel" format="string"/>
+
+    </declare-styleable>
+</resources>

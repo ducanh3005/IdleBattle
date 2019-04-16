@@ -2,6 +2,8 @@ package com.ballardsoftware.idlebattle.Model;
 
 //import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
 
+import android.arch.lifecycle.MutableLiveData;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,9 +17,11 @@ public class Weapon extends AbstractModel {
     //upgradeTime is milliseconds
     private long upgradeTime;
 
-    public Weapon(String name, double basePrice, int level, double upgradeCost,
-                  double income, long upgradeTime) {
-        super(name, basePrice, level, upgradeCost, income);
+    public Weapon(String name, double basePrice, int level,
+                  double upgradeCost, double income,
+                  MutableLiveData<String> incomeNumber, long upgradeTime) {
+
+        super(name, basePrice, level, upgradeCost, income, incomeNumber);
         this.upgradeTime = upgradeTime;
     }
 
@@ -26,7 +30,7 @@ public class Weapon extends AbstractModel {
         synchronized (this) {
             //todo: getMultiplier
             return (Math.floor((Math.log((
-                    Stat.getCurrentTotal() * (MULTIPLIER-1)) /
+                    Stats.getCurrentTotal() * (MULTIPLIER-1)) /
                     (getBasePrice() * Math.pow(MULTIPLIER, getLevel())) + 1)) /
                     Math.log(MULTIPLIER)));
         }
@@ -57,8 +61,8 @@ public class Weapon extends AbstractModel {
     public double addIncome() {
 
         synchronized (this) {
-            Stat.setCurrentTotal(Stat.getCurrentTotal() + getIncome());
-            return Stat.getCurrentTotal();
+            Stats.setCurrentTotal(Stats.getCurrentTotal() + getIncome());
+            return Stats.getCurrentTotal();
         }
     }
 
@@ -74,6 +78,19 @@ public class Weapon extends AbstractModel {
             }
         }, 2*60*upgradeTime);
 
+    }
+
+    private static MutableLiveData<String> incomeNumber;
+
+    public static MutableLiveData<String> getIncomeNumber() {
+        if(incomeNumber == null) {
+            incomeNumber = new MutableLiveData<String>();
+        }
+        return incomeNumber;
+    }
+
+    public void setIncomeNumber(MutableLiveData<String> incomeNumber) {
+        Weapon.incomeNumber = incomeNumber;
     }
 
     //ng+ = 3.5

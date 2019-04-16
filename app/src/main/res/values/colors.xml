@@ -8,4 +8,5 @@
     <color name="colorAccent">#c8e8ff</color>
 
     <color name="buttonColor">#777777</color>
+    <color name="background">#222222</color>
 </resources>
