@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".View.GamersFragment"
-             android:id="@+id/gamersFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".View.TeamsFragment"
+                android:id="@+id/teamsFragment">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_height="match_parent">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_1"
+                    android:id="@+id/team_upgrade_1"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -38,7 +38,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_2"
+                    android:id="@+id/team_upgrade_2"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="50dp"
@@ -52,7 +52,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_3"
+                    android:id="@+id/team_upgrade_3"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -66,7 +66,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_4"
+                    android:id="@+id/team_upgrade_4"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -80,7 +80,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_5"
+                    android:id="@+id/team_upgrade_5"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -94,7 +94,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_6"
+                    android:id="@+id/team_upgrade_6"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_7"
+                    android:id="@+id/team_upgrade_7"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -122,7 +122,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_8"
+                    android:id="@+id/team_upgrade_8"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -136,7 +136,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_9"
+                    android:id="@+id/team_upgrade_9"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -150,7 +150,7 @@
                 android:layout_marginTop="4dp">
 
                 <com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton
-                    android:id="@+id/gamer_upgrade_10"
+                    android:id="@+id/team_upgrade_10"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"

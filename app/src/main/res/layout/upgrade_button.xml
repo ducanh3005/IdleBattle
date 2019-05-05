@@ -4,22 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/buttonColor"
-    >
-
-
-    <Button
-        android:id="@+id/upgrade_weapon_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:paddingBottom="15dp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"/>
+    android:background="@drawable/custom_button"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/upgrade_weapon_btn">
 
     <TextView
         android:id="@+id/weapon_level"

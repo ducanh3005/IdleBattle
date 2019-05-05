@@ -1,31 +1,23 @@
 <resources>
     <string name="app_name">IdleBattle</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string
-        name="hello_blank_fragment">
-        Hello
-        blank
-        fragment
-    </string>
-
     <string name="weapons">Weapons</string>
     <string name="gamers">Gamers</string>
-    <string name="managers">Managers</string>
+    <string name="teams">teams</string>
     <string name="achievements">Achievements</string>
     <string name="stats">Stats</string>
 
     <!--Weapons-->
     <string name="weapon1">Fist</string>
-    <string name="weapon2">Boxing Gloves</string>
-    <string name="weapon3">Knife</string>
-    <string name="weapon4">Pistol</string>
-    <string name="weapon5">Shotgun</string>
-    <string name="weapon6">Machine Gun</string>
-    <string name="weapon7">Sniper Rifle</string>
-    <string name="weapon8">Grenade Launcher</string>
-    <string name="weapon9">Rocket Launcher</string>
-    <string name="weapon10">Laser Gun</string>
+    <string name="weapon2">Super Punch Gloves</string>
+    <string name="weapon3">Combat Knife</string>
+    <string name="weapon4">Target Pistol</string>
+    <string name="weapon5">Quail Shotgun</string>
+    <string name="weapon6">Q18 Automatic</string>
+    <string name="weapon7">Military Rifle</string>
+    <string name="weapon8">Grenade Thrower</string>
+    <string name="weapon9">Missile Stick</string>
+    <string name="weapon10">Big Laser Alien Gun</string>
 
     <!--Buy Button-->
     <string name="buy">Buy</string>
@@ -39,4 +31,61 @@
     <string name="buyTen">Buy 10x</string>
     <string name="buyOneHundred">Buy 100x</string>
     <string name="buyMax">Buy Max</string>
+
+    <!--Gamers-->
+    <string name="gamer1">XxX360Johnny</string>
+    <string name="gamer2">I♥🖤URMom</string>
+    <string name="gamer3">420Killz</string>
+    <string name="gamer4">ImTheBest</string>
+    <string name="gamer5">SonicSpeed</string>
+    <string name="gamer6">Hannah1996</string>
+    <string name="gamer7">TheRealSteve3</string>
+    <string name="gamer8">Pro_Rachel</string>
+    <string name="gamer9">Pro_James</string>
+    <string name="gamer10">Pro_Joe</string>
+
+    <!--Teams-->
+    <string name="team1">Noob Gaming</string>
+    <string name="team2">Rank 1</string>
+    <string name="team3">The Killerz</string>
+    <string name="team4">Team Best</string>
+    <string name="team5">Speedy Fast</string>
+    <string name="team6">GirlsOnly</string>
+    <string name="team7">Real Gamers</string>
+    <string name="team8">GO Team</string>
+    <string name="team9">Team Solid</string>
+    <string name="team10">Elite Gamers</string>
+
+    <!--Achievements-->
+    <string name="achievement1">Knife\n\nLvl 100\n\nBonus: 1,000,000</string>
+    <string name="achievement2">Boxing Gloves\n\nLvl 100\n\nBonus: 2,000,000</string>
+    <string name="achievement3">Knife\n\nLvl 100\n\nBonus: 3,000,000</string>
+    <string name="achievement4">Pistol\n\nLvl 100\n\nBonus: 4,000,000</string>
+    <string name="achievement5">Shotgun\n\nLvl 100\n\nBonus: 5,000,000</string>
+    <string name="achievement6">Machine Gun\n\nLvl 100\n\nBonus: 6,000,000</string>
+    <string name="achievement7">Sniper Rifle\n\nLvl 100\n\nBonus: 7,000,000</string>
+    <string name="achievement8">Grenade Launcher\n\nLvl 100\n\nBonus: 8,000,000</string>
+    <string name="achievement9">Rocket Launcher\n\nLvl 100\n\nBonus: 9,000,000</string>
+    <string name="achievement10">Laser Gun\n\nLvl 100\n\nBonus: 10,000,000</string>
+    <string name="achievement11">Earn 1,000,000\n\nTotal\n\nBonus:1,000,000</string>
+    <string name="achievement12">Have 1,000,000\n\nCurrent Total\n\nBonus:250,000</string>
+    <string name="achievement13">Earn 10,000,000\n\nTotal\n\nBonus: 10,000,000</string>
+    <string name="achievement14">Have 10,000,000\n\nCurrent Total\n\nBonus 2,500,000</string>
+    <string name="achievement15">Earn 100,000,000\n\nTotal\n\nBonus 100,000,000</string>
+    <string name="achievement16">Have 100,000,000\n\nCurrent Total\n\nBonus 25,000,000</string>
+    <string name="achievement17">Earn 1,000,000,000\n\nTotal\n\nBonus 100,000,000</string>
+    <string name="achievement18">Play For\n\n1 Month\n\nBonus: 100,000,000</string>
+    <string name="achievement19">Play For\n\n6 Months\n\nBonus: 1,000,000,000</string>
+    <string name="achievement20">Play For\n\n1 Year\n\nBonus: 1,000,000,000,000</string>
+
+    <!--Stats-->
+    <string name="totalSinceReset">Total Since Reset: </string>
+    <string name="lifetimeTotal">Lifetime Total Earned: </string>
+    <string name="dateStarted">Date Started Playing: </string>
+    <string name="activeTimePlayed">Active Time Played: </string>
+    <string name="timesReset">Times Reset: </string>
+    <string name="restart">Restart</string>
+    <string name="fullRestart">Full Restart</string>
+    <string name="help">Help</string>
+
 </resources>

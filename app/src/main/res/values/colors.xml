@@ -9,4 +9,9 @@
 
     <color name="buttonColor">#777777</color>
     <color name="background">#222222</color>
+    <color name="progressBarColor">#444444</color>
+
+    <!-- dark red theme -->
+    <color name="primaryRed">#881111</color>
+    <color name="redAccent">#ffc8c8</color>
 </resources>

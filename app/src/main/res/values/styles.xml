@@ -2,12 +2,29 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/buttonColor</item>
+        <!-- inactive track color -->
+        <item name="android:colorForeground">@color/buttonColor</item>
+    </style>
+
+    <style name="DarkRed" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/primaryRed</item>
+        <item name="colorPrimaryDark">@color/primaryRed</item>
+        <item name="colorAccent">@color/redAccent</item>
+    </style>
+
 
 </resources>

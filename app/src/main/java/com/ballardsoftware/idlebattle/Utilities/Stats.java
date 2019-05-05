@@ -1,8 +1,12 @@
-package com.ballardsoftware.idlebattle.Model;
+package com.ballardsoftware.idlebattle.Utilities;
 
-public class Stats {
+import android.arch.lifecycle.MutableLiveData;
 
-    private static double currentTotal = 0;
+//utility class
+final public class Stats {
+
+    //each should be livedata
+    public static MutableLiveData<Double> currentTotal;
     private static double totalSinceReset;
     private static double totalLifetime;
     private static double prestigeXP;
@@ -10,10 +14,32 @@ public class Stats {
     //number of days played
     //date started
     //total upgrades for each weapon?
+
+    private Stats() {
+        throw new AssertionError();
+    }
+
     public static String getTest() {
         return test;
     }
 
+
+    public static MutableLiveData<Double> getCurrentTotal() {
+        if(currentTotal == null) {
+            currentTotal = new MutableLiveData<>();
+        }
+        return currentTotal;
+    }
+
+    public static void setCurrentTotal(MutableLiveData<Double> currentTotal) {
+        //if(currentTotal == null) {
+        //    currentTotal = new MutableLiveData<>();
+        //}
+        Stats.currentTotal = currentTotal;
+        //Stats.currentTotal.setValue(newValue);
+    }
+
+  /*
     public static double getCurrentTotal() {
         return currentTotal;
     }
@@ -21,7 +47,7 @@ public class Stats {
     public static void setCurrentTotal(double currentTotal) {
         Stats.currentTotal = currentTotal;
     }
-
+*/
     public static double getTotalSinceReset() {
         return totalSinceReset;
     }

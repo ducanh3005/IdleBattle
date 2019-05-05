@@ -5,10 +5,389 @@
              android:layout_height="match_parent"
              tools:context=".View.AchievementsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:scrollbars="none"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="50dp">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/colorPrimary"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement1"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement2"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement4"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement5"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement6"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement7"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement8"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement9"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement10"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement11"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement12"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement13"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement14"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement15"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement16"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement17"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement18"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement19"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="158dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@color/progressBarColor"
+                    android:textAlignment="center"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/achievement20"/>
+
+            </TableRow>
+
+
+
+        </TableLayout>
+
+
+
+
+
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </FrameLayout>

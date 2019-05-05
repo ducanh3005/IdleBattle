@@ -1,4 +1,4 @@
-package com.ballardsoftware.idlebattle.View;
+package com.ballardsoftware.idlebattle.View.CustomViews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ballardsoftware.idlebattle.Model.Weapon;
 import com.ballardsoftware.idlebattle.R;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
 
@@ -26,6 +27,7 @@ public class ProgressBarButton extends FrameLayout
     TextView progressText;
     TextView weaponIncome;
 
+    //final ProgressBar m_bar
     Context context;
 
     public ProgressBarButton(Context context) {
@@ -90,16 +92,58 @@ public class ProgressBarButton extends FrameLayout
 
     @Override
     public void onClick(View v) {
-        System.out.println("progress");
         if (progressBar.getProgress() == 0)
         {
             //progressBar.setProgress(2000);
             //progressBar.animate();
-            startCountdownTimer();
+            Weapon weapon = getWeapon(getId());
+            if(weapon.getLevel() > 0) {
+                startCountdownTimer(weapon);
+            }
+            else displayPurchaseToast();
+
             //IdleViewModel.startProgressBar();
         }
         else displayToast();
-        progressBar.setProgress(0);
+        //progressBar.setProgress(0);
+    }
+
+    private Weapon getWeapon(int id) {
+        //Weapon weapon;
+
+        switch (id) {
+            case R.id.progress_bar_1:
+                return IdleViewModel.weaponsArray[0];
+                //break;
+            case R.id.progress_bar_2:
+                return IdleViewModel.weaponsArray[1];
+                //break;
+            case R.id.progress_bar_3:
+                return IdleViewModel.weaponsArray[2];
+                //break;
+            case R.id.progress_bar_4:
+                return IdleViewModel.weaponsArray[3];
+            //break;
+            case R.id.progress_bar_5:
+                return IdleViewModel.weaponsArray[4];
+            //break;
+            case R.id.progress_bar_6:
+                return IdleViewModel.weaponsArray[5];
+            //break;
+            case R.id.progress_bar_7:
+                return IdleViewModel.weaponsArray[6];
+            //break;
+            case R.id.progress_bar_8:
+                return IdleViewModel.weaponsArray[7];
+            //break;
+            case R.id.progress_bar_9:
+                return IdleViewModel.weaponsArray[8];
+            //break;
+            case R.id.progress_bar_10:
+                return IdleViewModel.weaponsArray[9];
+            //break;
+        }
+        return null;
     }
 
     Toast toast;
@@ -110,21 +154,34 @@ public class ProgressBarButton extends FrameLayout
         toast = Toast.makeText(getContext(), "Already Running", Toast.LENGTH_SHORT);
         toast.show();
     }
+
+    public void displayPurchaseToast() {
+        if(toast != null) {
+            toast.cancel();
+        }
+        toast = Toast.makeText(getContext(), "Purchase At Least One Upgrade", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+
+
+
     int count = 100;
 
-    private void startCountdownTimer() {
+    private void startCountdownTimer(final Weapon weapon) {
         //ProgressBarButton m_button = (ProgressBarButton)findViewById(R.id.progress_bar_1);
         //final ProgressBar m_bar = m_button.progressBar;
 
-        final ProgressBar m_bar = progressBar;
+        //final ProgressBar m_bar = progressBar;
         final TextView t = progressText;
         final TextView r = weaponIncome;
 
         //m_bar.setMax(10000);
-        m_bar.setMax(maxTime()[0]);
+        progressBar.setMax(maxTime()[0]);
         int m_total = 0;
 
-        m_bar.setProgress(m_total);
+        //m_bar
+        progressBar.setProgress(m_total);
 
         //final int totalMsecs = 10 * 1000 + 200;
         int callInterval = 100;
@@ -137,14 +194,16 @@ public class ProgressBarButton extends FrameLayout
                 float fraction = maxTime()[0] - millisUntilFinished;
                 //m_bar.setProgress((int) (fraction * 100));
                 //m_bar.setProgress((int) (100000 - millisUntilFinished));
-                m_bar.setProgress(count+=100);
+                progressBar.setProgress(count+=100);
+                //System.out.println(progressBar.getProgress());
+                //System.out.println(view.id);
                 //t.setText(Integer.toString(count));
                 //setProgressText("one");
 
             }
 
             public void onFinish() {
-                m_bar.setProgress(0);
+                progressBar.setProgress(0);
                 count = 100;
                 //t.setText("Fist");
                 //count = 0;
@@ -153,6 +212,21 @@ public class ProgressBarButton extends FrameLayout
                 IdleViewModel.progressFinished(maxTime()[1]);
                 //t.setText(String.format(Locale.getDefault(), "%.0f",
                         //Stats.getCurrentTotal()));
+
+
+                //todo:
+                // 1. click after autoClicker starts.
+                // 2. progressbar finishes
+                // 3. autoclicker finishes
+                // appears to click early
+
+                if(progressBar.getProgress() == 0 &&
+                weapon.getGamer().getLevel() > 0) {
+                    autoClicker(weapon);
+                }
+                //autoClicker(1, 100);
+
+
 
             }
         }.start();
@@ -208,5 +282,57 @@ public class ProgressBarButton extends FrameLayout
         int[] values = {maxTime, weaponNumber};
         return values;
     }
+
+    //todo: put autoClicker in Weapon class?
+    //public void autoClicker(int level, int time) {
+    //int time = 1000;
+    //int level = 0;
+    //Weapon weapon;
+
+    public void autoClicker(final Weapon weapon) {
+        int time = weapon.getGamer().getTime();
+        final int level = weapon.getGamer().getLevel();
+        //this.weapon = weapon;
+
+        CountDownTimer timer = new CountDownTimer(time, 1) {
+            public void onTick(long millisUntilFinished) {
+
+                //System.out.println("one");
+                if(progressBar.getProgress() != 0) {
+                    //return;
+                    //onFinish();
+                    cancel();
+                }
+            }
+
+            public void onFinish() {
+                //System.out.println("done");
+                if(progressBar.getProgress() == 0 && level > 0) {
+                    startCountdownTimer(weapon);
+                }
+
+            }
+        };
+
+        //timer.start();
+
+
+        //if (level > 0) {
+            if (progressBar.getProgress() == 0) {
+
+                /*        new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        startCountdownTimer();
+                    }
+                }, time);
+            }
+        }*/
+                timer.start();
+            }
+
+        //}
+    }
+
 
 }

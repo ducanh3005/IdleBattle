@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_button"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/upgrade_button">
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"/>
+
+    <TextView
+        android:id="@+id/current_level"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/upgrade_price"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:paddingStart="0dp"
+        android:paddingEnd="10dp"
+        android:layout_gravity="end"
+        android:gravity="center"/>
+
+
+
+</FrameLayout>

@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".View.StatsFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".View.StatsFragment"
+                android:id="@+id/layout">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:id="@+id/total_since_reset"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="20dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginStart="4dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:text="@string/totalSinceReset"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/lifetime_total"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/total_since_reset"
+        android:text="@string/lifetimeTotal"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/date_started"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/lifetime_total"
+        android:text="@string/dateStarted"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/active_time_played"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/date_started"
+        android:text="@string/activeTimePlayed"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/times_reset"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/active_time_played"
+        android:text="@string/timesReset"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/times_reset"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/buttonColor"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:text="@string/restart"/>
+
+    <Button
+        android:id="@+id/help"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/times_reset"
+        android:layout_toEndOf="@+id/restart"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/buttonColor"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:text="@string/help"/>
+
+    <Button
+        android:id="@+id/full_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="4dp"
+        android:background="@color/buttonColor"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="@string/fullRestart"/>
+
+
+
+
+</RelativeLayout>

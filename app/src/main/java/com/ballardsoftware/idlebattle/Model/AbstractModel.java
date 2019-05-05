@@ -2,9 +2,7 @@ package com.ballardsoftware.idlebattle.Model;
 
 //import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
 
-import android.arch.lifecycle.MutableLiveData;
-
-import java.util.Locale;
+import com.ballardsoftware.idlebattle.Utilities.Stats;
 
 public abstract class AbstractModel {
 
@@ -16,17 +14,15 @@ public abstract class AbstractModel {
     //private int amount;
     private double income;
     //private final double MULTIPLIER = 1.12;
-    private MutableLiveData<String> incomeNumber;
 
     //double income
     AbstractModel(String name, double basePrice, int level,
-                  double upgradeCost, double income, MutableLiveData<String> incomeNumber) {
+                  double upgradeCost, double income) {
         this.name = name;
         this.basePrice = basePrice;
         this.level = level;
         this.upgradeCost = upgradeCost;
         this.income = income;
-        this.incomeNumber = incomeNumber;
     }
 
     public double getIncome() {
@@ -36,7 +32,7 @@ public abstract class AbstractModel {
     public void setIncome(double income) {
         this.income = income;
         //todo why?
-        incomeNumber.setValue(String.format(Locale.getDefault(), "%.0f", income));
+        //incomeNumber.setValue(String.format(Locale.getDefault(), "%.0f", income));
     }
 
     public double getUpgradeCost() {
@@ -74,27 +70,7 @@ public abstract class AbstractModel {
 
 
 
-    //function to call when the upgrade button is clicked
-    public void upgrade() {
 
-        //don't use amount -> just call this function x number of times
-        //check if total > cost
-        //todo: synchronization for total //max level is about 3000 -> 3138
-        synchronized (this) {
-            if(Stats.getCurrentTotal() > upgradeCost) {
-                //subtract cost from total
-                Stats.setCurrentTotal(Stats.getCurrentTotal() - upgradeCost);
-                //increase level
-                level++;
-                //increase upgrade cost
-                //abstractCalculateUpgradePrice(level, basePrice, 100);
-
-            }
-
-        }
-
-        //don't display anything just calculate data. this is a model
-    }
 
     //function to call when the amount button is clicked
     //public int getAmount() {

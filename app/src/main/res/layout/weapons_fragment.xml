@@ -12,14 +12,7 @@
     tools:context="com.ballardsoftware.idlebattle.View.WeaponsFragment"
     android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/output"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+
 
 
         <android.support.v4.widget.NestedScrollView
@@ -27,7 +20,7 @@
             android:layout_height="match_parent"
             android:scrollbars="none"
             android:layout_above="@id/footer"
-            android:layout_below="@id/output"
+            android:layout_marginTop="75dp"
             android:layout_marginBottom="50dp">
 
 
@@ -39,7 +32,7 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_1"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -48,7 +41,7 @@
                         android:paddingEnd="2dp"
                         app:progressText="@string/weapon1"
                         app:weaponIncome="@string/weapon2"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_1"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -63,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_2"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -71,7 +64,7 @@
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"
                         app:progressText="@string/weapon2"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_2"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -85,14 +78,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_3"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_3"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -107,14 +100,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_4"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_4"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -128,14 +121,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_5"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_5"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -149,14 +142,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_6"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_6"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -170,14 +163,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_7"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_7"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -191,14 +184,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_8"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_8"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -212,14 +205,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_9"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_9"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
@@ -234,14 +227,14 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="0dp">
-                    <com.ballardsoftware.idlebattle.View.ProgressBarButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton
                         android:id="@+id/progress_bar_10"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight=".70"
                         android:paddingStart="4dp"
                         android:paddingEnd="2dp"/>
-                    <com.ballardsoftware.idlebattle.View.UpgradeButton
+                    <com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton
                         android:id="@+id/upgrade_weapon_btn_10"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
