@@ -34,7 +34,7 @@
 
     <!--Gamers-->
     <string name="gamer1">XxX360Johnny</string>
-    <string name="gamer2">I♥🖤URMom</string>
+    <string name="gamer2">I🖤URMom</string>
     <string name="gamer3">420Killz</string>
     <string name="gamer4">ImTheBest</string>
     <string name="gamer5">SonicSpeed</string>
@@ -87,5 +87,12 @@
     <string name="restart">Restart</string>
     <string name="fullRestart">Full Restart</string>
     <string name="help">Help</string>
+
+
+    <!--Away Message-->
+    <string name="away">While You Were Away</string>
+    <string name="doubleMoney">Watch an ad for double the money: %1$s</string>
+    <string name="ok">OK</string>
+    <string name="watchAd">Watch Ad</string>
 
 </resources>

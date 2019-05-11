@@ -7,52 +7,38 @@ public class Team extends AbstractModel {
     //time was income
 
     int bonus;
-    int level;
-    double upgradeCost;
+    //int level;
+    //double upgradeCost;
 
     public Team(String name, double basePrice, int level,
                    double upgradeCost, int bonus) {
-        super(name, basePrice, level, upgradeCost, bonus);
+        super(name, basePrice, level, upgradeCost);
         this.bonus = bonus;
-        this.level = level;
-        this.upgradeCost = upgradeCost;
-    }
-
-    @Override
-    double abstractCalculateUpgradePrice(double numberToUpgrade) {
-        return 0;
-    }
-
-    @Override
-    double abstractCalculateIncrease(double numberToUpgrade) {
-        return 0;
+        //this.level = level;
+        //this.upgradeCost = upgradeCost;
     }
 
     public int getBonus() {
         return bonus;
     }
-
-    public int getLevel() {
-        return level;
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
     }
 
-    public double getUpgradeCost() {
-        return upgradeCost;
-    }
-
-    public void teamUpgrade(int i) {
+    @Override
+    public void upgrade(int i) {
         Double total = Stats.currentTotal.getValue();
         //int level = getLevel();
         //double upgradeCost = getUpgradeCost();
-        if(total >= Double.valueOf(upgradeCost)) {
+        if(total >= Double.valueOf(getUpgradeCost())) {
             //Double d = new Double(upgradeCost);
 
-            if(level < 10) {
-                total-=(upgradeCost);
+            if(getLevel() < 10) {
+                total-=(getUpgradeCost());
                 Stats.currentTotal.setValue(total);
-                upgradeCost *= 5;
-
-                setLevel(level++);
+                //upgradeCost *= 5;
+                setUpgradeCost(getUpgradeCost() * 5);
+                setLevel(getLevel()+1);
 
 
                 //if(level > 1) {

@@ -7,9 +7,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ballardsoftware.idlebattle.R;
+import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
-
-import java.util.Locale;
 
 public class GamersAndTeamsButton extends FrameLayout
         implements View.OnClickListener{
@@ -142,46 +141,33 @@ public class GamersAndTeamsButton extends FrameLayout
     }
 
     private void gamerUpgrade(int i) {
-        IdleViewModel.weaponsArray[i].getGamer().gamerUpgrade();
+        IdleViewModel.weaponsArray[i].getGamer().upgrade(0);
         if(IdleViewModel.weaponsArray[i].getGamer().getLevel() == 10) {
             setUpgradeCost("Max");
         }
         else
-            setUpgradeCost(toString(IdleViewModel.weaponsArray[i].
+            setUpgradeCost(Stats.toString(IdleViewModel.weaponsArray[i].
                     getGamer().getUpgradeCost()));
-        setLevel(toString(IdleViewModel.weaponsArray[i].
+        setLevel(Stats.toStringLevel(IdleViewModel.weaponsArray[i].
                 getGamer().getLevel()));
     }
 
     private void teamUpgrade(int i, ProgressBarButton p) {
-        IdleViewModel.weaponsArray[i].getTeam().teamUpgrade(i);
+        IdleViewModel.weaponsArray[i].getTeam().upgrade(i);
         if(IdleViewModel.weaponsArray[i].getTeam().getLevel() == 10) {
             setUpgradeCost("Max");
         }
         else
-            setUpgradeCost(toString(IdleViewModel.weaponsArray[i].
+            setUpgradeCost(Stats.toString(IdleViewModel.weaponsArray[i].
                     getTeam().getUpgradeCost()));
-        setLevel(toString(IdleViewModel.weaponsArray[i].getTeam().
+        setLevel(Stats.toStringLevel(IdleViewModel.weaponsArray[i].getTeam().
                 getLevel()));
-        p.setWeaponIncome(toString(IdleViewModel.weaponsArray[i].
-                getIncome()));
+        p.setWeaponIncome(Stats.toString(IdleViewModel.weaponsArray[i].
+                getCurrentIncome()));
         //display income changes
 
 
         //IdleViewModel.weaponsArray[i].setIncome();
-    }
-
-    private static String toString(int num) {
-        return String.format(Locale.getDefault(),
-                "%s", "Lvl " + num);
-    }
-
-    private String toString(double d) {
-        if(d >= 10000000) {
-            return String.format(Locale.getDefault(), "%3.3E", d);
-        }
-        else
-            return String.format(Locale.getDefault(), "%.0f", d);
     }
 
     /*@Override

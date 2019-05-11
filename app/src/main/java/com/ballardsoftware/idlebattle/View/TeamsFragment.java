@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 
 import com.ballardsoftware.idlebattle.Model.Weapon;
 import com.ballardsoftware.idlebattle.R;
+import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
-
-import java.util.Locale;
 
 public class TeamsFragment extends Fragment{
 
@@ -63,50 +62,40 @@ public class TeamsFragment extends Fragment{
 
 
 
-        b1.setLevel(toString(weaponsArray1[0].getTeam().getLevel()));
-        b2.setLevel(toString(weaponsArray1[1].getTeam().getLevel()));
-        b3.setLevel(toString(weaponsArray1[2].getTeam().getLevel()));
-        b4.setLevel(toString(weaponsArray1[3].getTeam().getLevel()));
-        b5.setLevel(toString(weaponsArray1[4].getTeam().getLevel()));
-        b6.setLevel(toString(weaponsArray1[5].getTeam().getLevel()));
-        b7.setLevel(toString(weaponsArray1[6].getTeam().getLevel()));
-        b8.setLevel(toString(weaponsArray1[7].getTeam().getLevel()));
-        b9.setLevel(toString(weaponsArray1[8].getTeam().getLevel()));
-        b10.setLevel(toString(weaponsArray1[9].getTeam().getLevel()));
+        b1.setLevel(Stats.toStringLevel(weaponsArray1[0].getTeam().getLevel()));
+        b2.setLevel(Stats.toStringLevel(weaponsArray1[1].getTeam().getLevel()));
+        b3.setLevel(Stats.toStringLevel(weaponsArray1[2].getTeam().getLevel()));
+        b4.setLevel(Stats.toStringLevel(weaponsArray1[3].getTeam().getLevel()));
+        b5.setLevel(Stats.toStringLevel(weaponsArray1[4].getTeam().getLevel()));
+        b6.setLevel(Stats.toStringLevel(weaponsArray1[5].getTeam().getLevel()));
+        b7.setLevel(Stats.toStringLevel(weaponsArray1[6].getTeam().getLevel()));
+        b8.setLevel(Stats.toStringLevel(weaponsArray1[7].getTeam().getLevel()));
+        b9.setLevel(Stats.toStringLevel(weaponsArray1[8].getTeam().getLevel()));
+        b10.setLevel(Stats.toStringLevel(weaponsArray1[9].getTeam().getLevel()));
 
-        b1.setUpgradeCost(toString(
+        b1.setUpgradeCost(Stats.toString(
                 weaponsArray1[0].getTeam().getUpgradeCost()));
-        b2.setUpgradeCost(toString(
+        b2.setUpgradeCost(Stats.toString(
                 weaponsArray1[1].getTeam().getUpgradeCost()));
-        b3.setUpgradeCost(toString(
+        b3.setUpgradeCost(Stats.toString(
                 weaponsArray1[2].getTeam().getUpgradeCost()));
-        b4.setUpgradeCost(toString(
+        b4.setUpgradeCost(Stats.toString(
                 weaponsArray1[3].getTeam().getUpgradeCost()));
-        b5.setUpgradeCost(toString(
+        b5.setUpgradeCost(Stats.toString(
                 weaponsArray1[4].getTeam().getUpgradeCost()));
-        b6.setUpgradeCost(toString(
+        b6.setUpgradeCost(Stats.toString(
                 weaponsArray1[5].getTeam().getUpgradeCost()));
-        b7.setUpgradeCost(toString(
+        b7.setUpgradeCost(Stats.toString(
                 weaponsArray1[6].getTeam().getUpgradeCost()));
-        b8.setUpgradeCost(toString(
+        b8.setUpgradeCost(Stats.toString(
                 weaponsArray1[7].getTeam().getUpgradeCost()));
-        b9.setUpgradeCost(toString(
+        b9.setUpgradeCost(Stats.toString(
                 weaponsArray1[8].getTeam().getUpgradeCost()));
-        b10.setUpgradeCost(toString(
+        b10.setUpgradeCost(Stats.toString(
                 weaponsArray1[9].getTeam().getUpgradeCost()));
 
 
         return view;
-    }
-
-    private String toString(int num) {
-        return String.format(Locale.getDefault(),
-                "%s", "Lvl " + num);
-    }
-
-    private String toString(double num) {
-        return String.format(Locale.getDefault(),
-                "%.0f", num);
     }
 
 }

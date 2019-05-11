@@ -2,37 +2,27 @@ package com.ballardsoftware.idlebattle.Model;
 
 //import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.total;
 
-import com.ballardsoftware.idlebattle.Utilities.Stats;
-
 public abstract class AbstractModel {
 
 
-    private String name;
+    private final String name;
     private double basePrice;
     private int level;
     private double upgradeCost;
     //private int amount;
-    private double income;
+    //private double income;
+    private transient int value;
     //private final double MULTIPLIER = 1.12;
 
     //double income
     AbstractModel(String name, double basePrice, int level,
-                  double upgradeCost, double income) {
+                  double upgradeCost) {
         this.name = name;
         this.basePrice = basePrice;
         this.level = level;
         this.upgradeCost = upgradeCost;
-        this.income = income;
-    }
-
-    public double getIncome() {
-        return income;
-    }
-
-    public void setIncome(double income) {
-        this.income = income;
-        //todo why?
-        //incomeNumber.setValue(String.format(Locale.getDefault(), "%.0f", income));
+        //this.income = income;
+        //this.value = value;
     }
 
     public double getUpgradeCost() {
@@ -45,10 +35,6 @@ public abstract class AbstractModel {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getBasePrice() {
@@ -67,6 +53,13 @@ public abstract class AbstractModel {
         this.level = level;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 
 
 
@@ -95,11 +88,13 @@ public abstract class AbstractModel {
 
 
     //calculate upgradePrices for weapons, gamers, and managers
-    abstract double abstractCalculateUpgradePrice(
-            double numberToUpgrade);
+    //abstract double abstractCalculateUpgradePrice(
+     //       double numberToUpgrade);
     
     //calculate income for weapons, time for gamers,
     // and multiplier for managers
-    abstract double abstractCalculateIncrease(double numberToUpgrade);
+    //abstract double abstractCalculateIncrease(double numberToUpgrade);
+
+    abstract void upgrade(int i);
 
 }

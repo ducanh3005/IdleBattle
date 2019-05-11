@@ -14,82 +14,94 @@ public class Weapon {
 
     //todo: change multiplier for each weapon?
     //todo - different weapons are more efficient
-    private final double MULTIPLIER = 1.12;
-    private double rate = 4;
+    //private transient final double MULTIPLIER = 1.12;
+    //private transient double rate = 4;
 
-    private double baseIncome;
-    private double basePrice;
-    private long upgradeTime;
+    private final String name;
+    private final double baseIncome;
+    private double currentIncome;
+    private final double baseUpgradeCost;
+    private double currentUpgradeCost;
+    private long time;
     private int level;
-    private double upgradeCost;
-    private double income;
+    
+    
     private Gamer gamer;
     private Team team;
 
 
-    public Weapon(double baseIncome, double basePrice, long upgradeTime,
-                  int level, double upgradeCost, double income, Gamer gamer,
-                  Team team) {
+    public Weapon(String name, double baseIncome, double currentIncome,
+                  double baseUpgradeCost, double currentUpgradeCost, 
+                  long time, int level, Gamer gamer, Team team) {
 
-        //super(name, basePrice, level, upgradeCost, income);
-        //this.upgradeTime = upgradeTime;
+        //super(name, basecurrentUpgradeCost, level, currentUpgradeCost, currentIncome);
+        //this.time = time;
+        this.name = name;
         this.baseIncome = baseIncome;
-        this.basePrice = basePrice;
-        this.upgradeTime = upgradeTime;
+        this.currentIncome = currentIncome;
+        this.baseUpgradeCost = baseUpgradeCost;
+        this.currentUpgradeCost = currentUpgradeCost;
+        this.time = time;
         this.level = level;
-        this.upgradeCost = upgradeCost;
-        this.income = income;
+        
+        
         this.gamer = gamer;
         this.team = team;
 
     }
+    public String getName() {
+        return name;
+    }
+    public double getBaseIncome() {
+        return baseIncome;
+    }
+    public double getCurrentIncome() {
+        return currentIncome;
+    }
 
+    public void setCurrentIncome(double num) {
+        currentIncome = num;
+    }
+    public double getBaseUpgradeCost() {
+        return baseUpgradeCost;
+    }
+    public double getCurrentUpgradeCost() {
+        return currentUpgradeCost;
+    }
+
+    public void setCurrentUpgradeCost(double cost) {
+        currentUpgradeCost = cost;
+    }
+    public long getTime() {
+        return time;
+    }
     public int getLevel() {
         return level;
-    }
-    public double getUpgradeCost() {
-        return upgradeCost;
-    }
-
-    public void setUpgradeCost(double cost) {
-        upgradeCost = cost;
     }
     public Gamer getGamer() {
         return gamer;
     }
-
     public void setGamer(Gamer gamer) {
         this.gamer = gamer;
     }
-
     public Team getTeam() {
         return team;
     }
-
     public void setTeam(Team team) {
         this.team = team;
     }
 
-    public double getIncome() {
-        return income;
-    }
 
-    public void setIncome(double num) {
-        income = num;
-    }
 
-    public void incomeMultiplier() {
-
-    }
 
     public double calculateMaxNumber() {
 
         synchronized (this) {
             //todo: getMultiplier
             return (Math.floor((Math.log((
-                    Stats.getCurrentTotal().getValue() * (MULTIPLIER-1)) /
-                    (basePrice * Math.pow(MULTIPLIER, level)) + 1)) /
-                    Math.log(MULTIPLIER)));
+                    Stats.getCurrentTotal().getValue() * (Stats.multiplier-1))
+                    /(baseUpgradeCost * Math.pow(Stats.multiplier,
+                    level)) + 1)) / Math.log(Stats.multiplier)));
         }
     }
 
@@ -97,63 +109,66 @@ public class Weapon {
     //public double abstractCalculateUpgradePrice(double numberToUpgrade) {
     public double calculateUpgradePrice(double numberToUpgrade) {
 
-        return (basePrice * (((Math.pow(MULTIPLIER, level)) *
-                ((Math.pow(MULTIPLIER, numberToUpgrade)) - 1)) /
-                (MULTIPLIER - 1)));
+        return (baseUpgradeCost * (((Math.pow(Stats.multiplier, level))
+                *((Math.pow(Stats.multiplier, numberToUpgrade)) - 1)) /
+                (Stats.multiplier - 1)));
     }
 
-    //Todo: increase income rate with ng+
+    //Todo: increase currentIncome rate with ng+
     //@Override
     //public double abstractCalculateIncrease(double numberToUpgrade) {
     public double calculateIncrease(double numberToUpgrade) {
-        //double income = getIncome();
+        //double currentIncome = getcurrentIncome();
 
         //Multiplier from manager
-        //income = (baseIncome * level) * Multiplier
+        //currentIncome = (basecurrentIncome * level) * Multiplier
         //for (int i = 0; i < numberToUpgrade; i++) {
-           // income+= income / rate;
+           // currentIncome+= currentIncome / rate;
         //}
         //level+=numberToUpgrade;
         //level*=team.getBonus();
-        income=level*3 + baseIncome;
-        income *= team.getBonus();
-        return income;
+        currentIncome=level*3 + baseIncome;
+        currentIncome *= team.getBonus();
+        currentIncome *= Stats.prestigeXP;
+        return currentIncome;
     }
 
-    //when to progress (total += income) and when to use weaponTime
-    public double addIncome() {
+    //when to progress (total += currentIncome) and when to use time
+    public double addcurrentIncome() {
 
         synchronized (this) {
-            Stats.currentTotal.setValue(Stats.getCurrentTotal().getValue() + getIncome());
+            Stats.currentTotal.setValue(Stats.getCurrentTotal().getValue() +
+                    getCurrentIncome());
             return Stats.getCurrentTotal().getValue();
         }
     }
 
     //Todo: custom progress bar in View (xml)
     void weaponProgress() {
-        //runs addIncome function after time
+        //runs addcurrentIncome function after time
 
         final Timer progressTime = new Timer();
         progressTime.schedule(new TimerTask() {
             @Override
             public void run() {
-                addIncome();
+                addcurrentIncome();
             }
-        }, 2*60*upgradeTime);
+        }, 2*60*time);
 
     }
 
-    private static MutableLiveData<String> incomeNumber;
+    private static MutableLiveData<String> currentIncomeNumber;
 
-    public static MutableLiveData<String> getIncomeNumber() {
-        if(incomeNumber == null) {
-            incomeNumber = new MutableLiveData<String>();
+    public static MutableLiveData<String> getcurrentIncomeNumber() {
+        if(currentIncomeNumber == null) {
+            currentIncomeNumber = new MutableLiveData<String>();
         }
-        return incomeNumber;
+        return currentIncomeNumber;
     }
 
-    public void setIncomeNumber(MutableLiveData<String> incomeNumber) {
-        Weapon.incomeNumber = incomeNumber;
+    public void setcurrentIncomeNumber(MutableLiveData<String>
+                                               currentIncomeNumber) {
+        Weapon.currentIncomeNumber = currentIncomeNumber;
     }
 
     //function to call when the upgrade button is clicked
@@ -163,20 +178,20 @@ public class Weapon {
         //check if total > cost
         //todo: synchronization for total //max level is about 3000 -> 3138
         synchronized (this) {
-            if(Stats.getCurrentTotal().getValue() >= upgradeCost) {
+            if(Stats.getCurrentTotal().getValue() >= currentUpgradeCost) {
                 //subtract cost from total
                 Stats.currentTotal.setValue(Stats.getCurrentTotal().getValue()
-                        - upgradeCost);
+                        - currentUpgradeCost);
 
                 //increase level
                 level+= numberToUpgrade;
 
                 //increase upgrade cost
-                //abstractCalculateUpgradePrice(level, basePrice, 100);
-                upgradeCost = calculateUpgradePrice(numberToUpgrade);
+                //abstractCalculateUpgradePrice(level, basecurrentUpgradeCost, 100);
+                currentUpgradeCost = calculateUpgradePrice(numberToUpgrade);
 
-                //increase income
-                income = calculateIncrease(numberToUpgrade);
+                //increase currentIncome
+                currentIncome = calculateIncrease(numberToUpgrade);
 
             }
 
@@ -200,7 +215,7 @@ public class Weapon {
     //rate = rate/2   double
     //rate = rate/5   20% increase
     public void increaseRate() {
-        rate = rate / 1.2;
+        //rate = rate / 1.2;
     }
 
 }

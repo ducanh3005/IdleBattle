@@ -10,10 +10,9 @@ import android.view.ViewGroup;
 
 import com.ballardsoftware.idlebattle.Model.Weapon;
 import com.ballardsoftware.idlebattle.R;
+import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
-
-import java.util.Locale;
 
 public class GamersFragment extends Fragment
         implements View.OnClickListener{
@@ -78,36 +77,36 @@ public class GamersFragment extends Fragment
         b10.setName(getContext().getString(R.string.gamer10));
         */
 
-        b1.setLevel(toString(weaponsArray1[0].getGamer().getLevel()));
-        b2.setLevel(toString(weaponsArray1[1].getGamer().getLevel()));
-        b3.setLevel(toString(weaponsArray1[2].getGamer().getLevel()));
-        b4.setLevel(toString(weaponsArray1[3].getGamer().getLevel()));
-        b5.setLevel(toString(weaponsArray1[4].getGamer().getLevel()));
-        b6.setLevel(toString(weaponsArray1[5].getGamer().getLevel()));
-        b7.setLevel(toString(weaponsArray1[6].getGamer().getLevel()));
-        b8.setLevel(toString(weaponsArray1[7].getGamer().getLevel()));
-        b9.setLevel(toString(weaponsArray1[8].getGamer().getLevel()));
-        b10.setLevel(toString(weaponsArray1[9].getGamer().getLevel()));
+        b1.setLevel(Stats.toStringLevel(weaponsArray1[0].getGamer().getLevel()));
+        b2.setLevel(Stats.toStringLevel(weaponsArray1[1].getGamer().getLevel()));
+        b3.setLevel(Stats.toStringLevel(weaponsArray1[2].getGamer().getLevel()));
+        b4.setLevel(Stats.toStringLevel(weaponsArray1[3].getGamer().getLevel()));
+        b5.setLevel(Stats.toStringLevel(weaponsArray1[4].getGamer().getLevel()));
+        b6.setLevel(Stats.toStringLevel(weaponsArray1[5].getGamer().getLevel()));
+        b7.setLevel(Stats.toStringLevel(weaponsArray1[6].getGamer().getLevel()));
+        b8.setLevel(Stats.toStringLevel(weaponsArray1[7].getGamer().getLevel()));
+        b9.setLevel(Stats.toStringLevel(weaponsArray1[8].getGamer().getLevel()));
+        b10.setLevel(Stats.toStringLevel(weaponsArray1[9].getGamer().getLevel()));
 
-        b1.setUpgradeCost(toString(
+        b1.setUpgradeCost(Stats.toString(
                 weaponsArray1[0].getGamer().getUpgradeCost()));
-        b2.setUpgradeCost(toString(
+        b2.setUpgradeCost(Stats.toString(
                 weaponsArray1[1].getGamer().getUpgradeCost()));
-        b3.setUpgradeCost(toString(
+        b3.setUpgradeCost(Stats.toString(
                 weaponsArray1[2].getGamer().getUpgradeCost()));
-        b4.setUpgradeCost(toString(
+        b4.setUpgradeCost(Stats.toString(
                 weaponsArray1[3].getGamer().getUpgradeCost()));
-        b5.setUpgradeCost(toString(
+        b5.setUpgradeCost(Stats.toString(
                 weaponsArray1[4].getGamer().getUpgradeCost()));
-        b6.setUpgradeCost(toString(
+        b6.setUpgradeCost(Stats.toString(
                 weaponsArray1[5].getGamer().getUpgradeCost()));
-        b7.setUpgradeCost(toString(
+        b7.setUpgradeCost(Stats.toString(
                 weaponsArray1[6].getGamer().getUpgradeCost()));
-        b8.setUpgradeCost(toString(
+        b8.setUpgradeCost(Stats.toString(
                 weaponsArray1[7].getGamer().getUpgradeCost()));
-        b9.setUpgradeCost(toString(
+        b9.setUpgradeCost(Stats.toString(
                 weaponsArray1[8].getGamer().getUpgradeCost()));
-        b10.setUpgradeCost(toString(
+        b10.setUpgradeCost(Stats.toString(
                 weaponsArray1[9].getGamer().getUpgradeCost()));
 
 
@@ -128,16 +127,16 @@ public class GamersFragment extends Fragment
 
         switch (v.getId()) {
             case R.id.gamer_upgrade_1:
-                IdleViewModel.weaponsArray[0].getGamer().gamerUpgrade();
+                IdleViewModel.weaponsArray[0].getGamer().upgrade(0);
                 GamersAndTeamsButton b1 =
                         v.findViewById(R.id.gamer_upgrade_1);
                 if(IdleViewModel.weaponsArray[0].getGamer().getLevel() == 10) {
                     b1.setUpgradeCost("Max");
                 }
                 else
-                b1.setUpgradeCost(toString(IdleViewModel.weaponsArray[0].
+                b1.setUpgradeCost(Stats.toString(IdleViewModel.weaponsArray[0].
                         getGamer().getUpgradeCost()));
-                b1.setLevel(toString(IdleViewModel.weaponsArray[0].
+                b1.setLevel(Stats.toString(IdleViewModel.weaponsArray[0].
                         getGamer().getLevel()));
                 break;
             case R.id.gamer_upgrade_2:
@@ -160,16 +159,6 @@ public class GamersFragment extends Fragment
                 break;
 
         }
-    }
-
-    private static String toString(int num) {
-        return String.format(Locale.getDefault(),
-                "%s", "Lvl " + num);
-    }
-
-    private static String toString(double num) {
-        return String.format(Locale.getDefault(),
-                "%.0f", num);
     }
 
 }

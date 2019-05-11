@@ -1,10 +1,7 @@
 package com.ballardsoftware.idlebattle.ViewModel;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.ballardsoftware.idlebattle.Model.Gamer;
-import com.ballardsoftware.idlebattle.Model.Team;
 import com.ballardsoftware.idlebattle.Model.Weapon;
 import com.ballardsoftware.idlebattle.Utilities.Stats;
 
@@ -56,28 +53,12 @@ public class IdleViewModel extends ViewModel {
         //save current time
     }
 
-    private static MutableLiveData<Double> test;
 
-    public static void startGame() {
-        //load from save
-        //load in weapons array
-        if (weaponsArray == null) {
-            weaponsArray = initializeWeapons();
-            //test.setValue(0.0);
-            //Stats.setCurrentTotal(test);
-            Stats.getCurrentTotal().setValue(0.0);
-        }
-
-        //todo works on changing income - doesn't change incomeNumber
-        //.setIncome() also changes incomeNumber
-        //weaponsArray[0].setIncome(5);
-        //get current time
-        //calculate amounts earned from last time played for each weapon
-    }
+    //start game was here
 
     //called in ProgressBarButton after the progress countdown is finished
     public static void progressFinished(int weaponNumber) {
-        Double income = weaponsArray[weaponNumber].getIncome();
+        Double income = weaponsArray[weaponNumber].getCurrentIncome();
         if(Stats.getCurrentTotal().getValue() != null) {
             income += Stats.getCurrentTotal().getValue();
         }
@@ -94,11 +75,11 @@ public class IdleViewModel extends ViewModel {
     int upgradeWeapon(Weapon weapon){
         //if total greater than cost
         if(Stats.getCurrentTotal().getValue() != null &&
-                Stats.getCurrentTotal().getValue() > weapon.getUpgradeCost()) {
+                Stats.getCurrentTotal().getValue() > weapon.getCurrentUpgradeCost()) {
 
             //upgrade cost is subtracted from total
             Stats.currentTotal.setValue(Stats.getCurrentTotal().getValue() -
-                    weapon.getUpgradeCost());
+                    weapon.getCurrentUpgradeCost());
 
             //calculate new income
 
@@ -135,12 +116,12 @@ public class IdleViewModel extends ViewModel {
 
     //todo: select amount (weapons only)
     void upgradeCost(int amount) {
-        Weapon[] weaponsArray = initializeWeapons();
+        //Weapon[] weaponsArray = initializeWeapons();
         //calculate max for each weapon
         if (amount == 0) {
             for (int i = 0; i < 9; i++) {
                 double max = weaponsArray[i].calculateMaxNumber();
-                weaponsArray[i].setUpgradeCost(
+                weaponsArray[i].setCurrentUpgradeCost(
                         weaponsArray[i].calculateUpgradePrice(max));
                 //needs to be displayed
                 //listener on upgradeCost to display every time it changes?
@@ -150,7 +131,7 @@ public class IdleViewModel extends ViewModel {
 
         else {
             for (int i = 0; i < 9; i++) {
-                weaponsArray[i].setUpgradeCost(
+                weaponsArray[i].setCurrentUpgradeCost(
                         weaponsArray[i].calculateUpgradePrice(amount));
             }
         }
@@ -172,15 +153,16 @@ public class IdleViewModel extends ViewModel {
     //reset total and levels to 0
     //increase multiplier
 
-    private static Weapon[] initializeWeapons() {
+    /*
+    public static Weapon[] initializeWeapons() {
 
-        /*
+
         *  basePrice is the base upgrade price
         *       -used to calculate upgrades
         *  upgradeCost is the current cost to upgrade the selected amount
         *       -used to display upgrade coast and buy upgrades
         *
-        */
+
 
         Weapon [] weaponsArray = new Weapon[10];
         //weaponsList1 = new Weapon[10];
@@ -189,15 +171,15 @@ public class IdleViewModel extends ViewModel {
 
         //for use with weapon constructors
         String weaponName_1 = "Fist";
-        String weaponName_2 = "Boxing Gloves";
-        String weaponName_3 = "Knife";
-        String weaponName_4 = "Pistol";
-        String weaponName_5 = "Shotgun";
-        String weaponName_6 = "Machine Gun";
-        String weaponName_7 = "Sniper Rifle";
-        String weaponName_8 = "Grenade Launcher";
-        String weaponName_9 = "Rocket Launcher";
-        String weaponName_10 = "Laser Gun";
+        String weaponName_2 = "Super Punch Gloves";
+        String weaponName_3 = "Combat Knife";
+        String weaponName_4 = "Target Pistol";
+        String weaponName_5 = "Quail Shotgun";
+        String weaponName_6 = "Q18 Automatic";
+        String weaponName_7 = "Military Rifle";
+        String weaponName_8 = "Grenade Thrower";
+        String weaponName_9 = "Missile Stick";
+        String weaponName_10 = "Big Laser Alien Gun";
 
         double baseWeaponIncome_1 = 4;
         double baseWeaponIncome_2 = 10;
@@ -239,7 +221,7 @@ public class IdleViewModel extends ViewModel {
         //gamers
 
         String gamerName1 = "XxX360Johnny";
-        String gamerName2 = "I♥🖤URMom";
+        String gamerName2 = "I🖤URMom";
         String gamerName3 = "420Killz";
         String gamerName4 = "ImTheBest";
         String gamerName5 = "SonicSpeed";
@@ -332,23 +314,23 @@ public class IdleViewModel extends ViewModel {
 
         Team team1 = new Team(teamName1, baseTeamPrice1, initialLevel,
                 baseTeamPrice1, bonus);
-        Team team2 = new Team(teamName2, baseTeamPrice1, initialLevel,
+        Team team2 = new Team(teamName2, baseTeamPrice2, initialLevel,
                 baseTeamPrice2, bonus);
-        Team team3 = new Team(teamName3, baseTeamPrice1, initialLevel,
+        Team team3 = new Team(teamName3, baseTeamPrice3, initialLevel,
                 baseTeamPrice3, bonus);
-        Team team4 = new Team(teamName4, baseTeamPrice1, initialLevel,
+        Team team4 = new Team(teamName4, baseTeamPrice4, initialLevel,
                 baseTeamPrice4, bonus);
-        Team team5 = new Team(teamName5, baseTeamPrice1, initialLevel,
+        Team team5 = new Team(teamName5, baseTeamPrice5, initialLevel,
                 baseTeamPrice5, bonus);
-        Team team6 = new Team(teamName6, baseTeamPrice1, initialLevel,
+        Team team6 = new Team(teamName6, baseTeamPrice6, initialLevel,
                 baseTeamPrice6, bonus);
-        Team team7 = new Team(teamName7, baseTeamPrice1, initialLevel,
+        Team team7 = new Team(teamName7, baseTeamPrice7, initialLevel,
                 baseTeamPrice7, bonus);
-        Team team8 = new Team(teamName8, baseTeamPrice1, initialLevel,
+        Team team8 = new Team(teamName8, baseTeamPrice8, initialLevel,
                 baseTeamPrice8, bonus);
-        Team team9 = new Team(teamName9, baseTeamPrice1, initialLevel,
+        Team team9 = new Team(teamName9, baseTeamPrice9, initialLevel,
                 baseTeamPrice9, bonus);
-        Team team10 = new Team(teamName10, baseTeamPrice1, initialLevel,
+        Team team10 = new Team(teamName10, baseTeamPrice10, initialLevel,
                 baseTeamPrice10, bonus);
 
 
@@ -357,36 +339,36 @@ public class IdleViewModel extends ViewModel {
         //todo: is upgradeCost necessary?
         //String name, double basePrice, int level,
         // double upgradeCost, double income
-        weaponsArray[0] = new Weapon(baseWeaponIncome_1, baseUpgradePrice_1,
-                weaponTime_1,1, baseUpgradePrice_1, baseWeaponIncome_1,
-                gamer1, team1);
-        weaponsArray[1] = new Weapon(baseWeaponIncome_2,baseUpgradePrice_2, weaponTime_2,
+        weaponsArray[0] = new Weapon(weaponName_1, baseWeaponIncome_1,
+                baseUpgradePrice_1, weaponTime_1,1, baseUpgradePrice_1,
+                baseWeaponIncome_1, gamer1, team1);
+        weaponsArray[1] = new Weapon(weaponName_2, baseWeaponIncome_2,baseUpgradePrice_2, weaponTime_2,
                 0, baseUpgradePrice_2, baseWeaponIncome_2,gamer2, team2);
-        weaponsArray[2] = new Weapon(baseWeaponIncome_3,baseUpgradePrice_3, weaponTime_3,
+        weaponsArray[2] = new Weapon(weaponName_3, baseWeaponIncome_3,baseUpgradePrice_3, weaponTime_3,
                 0, baseUpgradePrice_3, baseWeaponIncome_3,gamer3, team3);
-        weaponsArray[3] = new Weapon(baseWeaponIncome_4,baseUpgradePrice_4, weaponTime_4,
+        weaponsArray[3] = new Weapon(weaponName_4, baseWeaponIncome_4,baseUpgradePrice_4, weaponTime_4,
                 0, baseUpgradePrice_4, baseWeaponIncome_4,gamer4, team4);
-        weaponsArray[4] = new Weapon(baseWeaponIncome_5,baseUpgradePrice_5, weaponTime_5,
+        weaponsArray[4] = new Weapon(weaponName_5, baseWeaponIncome_5,baseUpgradePrice_5, weaponTime_5,
                 0, baseUpgradePrice_5, baseWeaponIncome_5,gamer5, team5);
-        weaponsArray[5] = new Weapon(baseWeaponIncome_6,baseUpgradePrice_6, weaponTime_6,
+        weaponsArray[5] = new Weapon(weaponName_6, baseWeaponIncome_6,baseUpgradePrice_6, weaponTime_6,
                 0, baseUpgradePrice_6, baseWeaponIncome_6,gamer6, team6);
-        weaponsArray[6] = new Weapon(baseWeaponIncome_7,baseUpgradePrice_7, weaponTime_7,
+        weaponsArray[6] = new Weapon(weaponName_7, baseWeaponIncome_7,baseUpgradePrice_7, weaponTime_7,
                 0, baseUpgradePrice_7, baseWeaponIncome_7,gamer7, team7);
-        weaponsArray[7] = new Weapon(baseWeaponIncome_8,baseUpgradePrice_8, weaponTime_8,
+        weaponsArray[7] = new Weapon(weaponName_8, baseWeaponIncome_8,baseUpgradePrice_8, weaponTime_8,
                 0, baseUpgradePrice_8, baseWeaponIncome_8,gamer8, team8);
-        weaponsArray[8] = new Weapon(baseWeaponIncome_9,baseUpgradePrice_9, weaponTime_9,
+        weaponsArray[8] = new Weapon(weaponName_9, baseWeaponIncome_9,baseUpgradePrice_9, weaponTime_9,
                 0, baseUpgradePrice_9, baseWeaponIncome_9,gamer9, team9);
-        weaponsArray[9] = new Weapon(baseWeaponIncome_10,baseUpgradePrice_10, weaponTime_10,
+        weaponsArray[9] = new Weapon(weaponName_10, baseWeaponIncome_10,baseUpgradePrice_10, weaponTime_10,
                 0, baseUpgradePrice_10, baseWeaponIncome_10,gamer10,
                 team10);
 
 
-        /*weaponsArray[9] = new Weapon(weaponName_10, baseUpgradePrice_10,
+        weaponsArray[9] = new Weapon(weaponName_10, baseUpgradePrice_10,
                 0, baseUpgradePrice_10, baseWeaponIncome_10,
                 weaponTime_10, gamer10, team10);
-*/
+
         return  weaponsArray;
-    }
+    }*/
 
 
 }

@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 
 import com.ballardsoftware.idlebattle.Model.Weapon;
 import com.ballardsoftware.idlebattle.R;
+import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.View.CustomViews.ProgressBarButton;
 import com.ballardsoftware.idlebattle.View.CustomViews.UpgradeButton;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
@@ -45,7 +46,7 @@ public class WeaponsFragment extends Fragment {
         model.getCurrentTotal().observe(this, totalObserver);
 */
 
-        IdleViewModel.startGame();
+        //IdleViewModel.startGame();
 
 
 
@@ -90,25 +91,25 @@ public class WeaponsFragment extends Fragment {
 
 
         p1.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[0].getIncome()));
+                IdleViewModel.weaponsArray[0].getCurrentIncome()));
         p2.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[1].getIncome()));
+                IdleViewModel.weaponsArray[1].getCurrentIncome()));
         p3.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[2].getIncome()));
+                IdleViewModel.weaponsArray[2].getCurrentIncome()));
         p4.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[3].getIncome()));
+                IdleViewModel.weaponsArray[3].getCurrentIncome()));
         p5.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[4].getIncome()));
+                IdleViewModel.weaponsArray[4].getCurrentIncome()));
         p6.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[5].getIncome()));
+                IdleViewModel.weaponsArray[5].getCurrentIncome()));
         p7.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[6].getIncome()));
+                IdleViewModel.weaponsArray[6].getCurrentIncome()));
         p8.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[7].getIncome()));
+                IdleViewModel.weaponsArray[7].getCurrentIncome()));
         p9.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[8].getIncome()));
+                IdleViewModel.weaponsArray[8].getCurrentIncome()));
         p10.setWeaponIncome(String.format(Locale.getDefault(), "%.0f",
-                IdleViewModel.weaponsArray[9].getIncome()));
+                IdleViewModel.weaponsArray[9].getCurrentIncome()));
 
         final UpgradeButton u1 = view.findViewById(R.id.upgrade_weapon_btn_1);
         final UpgradeButton u2 = view.findViewById(R.id.upgrade_weapon_btn_2);
@@ -122,25 +123,25 @@ public class WeaponsFragment extends Fragment {
         UpgradeButton u10 = view.findViewById(R.id.upgrade_weapon_btn_10);
 
         u1.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[0].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[0].getCurrentUpgradeCost()));
         u2.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[1].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[1].getCurrentUpgradeCost()));
         u3.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[2].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[2].getCurrentUpgradeCost()));
         u4.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[3].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[3].getCurrentUpgradeCost()));
         u5.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[4].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[4].getCurrentUpgradeCost()));
         u6.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[5].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[5].getCurrentUpgradeCost()));
         u7.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[6].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[6].getCurrentUpgradeCost()));
         u8.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[7].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[7].getCurrentUpgradeCost()));
         u9.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[8].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[8].getCurrentUpgradeCost()));
         u10.setUpgradeWeaponPrice(String.format(Locale.getDefault(),
-                "%.0f", IdleViewModel.weaponsArray[9].getUpgradeCost()));
+                "%.0f", IdleViewModel.weaponsArray[9].getCurrentUpgradeCost()));
 
 
 
@@ -274,7 +275,7 @@ public class WeaponsFragment extends Fragment {
                         //set upgrade price based on amount
                         for(int i = 0; i<10; i++){
                             double a = weapons[i].calculateUpgradePrice(1);
-                            weapons[i].setUpgradeCost(a);
+                            weapons[i].setCurrentUpgradeCost(a);
                             upgradePrices[i] = a;
                         }
                         changeUpgradePriceForAll(upgradePrices);
@@ -298,7 +299,7 @@ public class WeaponsFragment extends Fragment {
 
                         for(int i = 0; i<10; i++){
                             double a = weapons[i].calculateUpgradePrice(10);
-                            weapons[i].setUpgradeCost(a);
+                            weapons[i].setCurrentUpgradeCost(a);
                             upgradePrices[i] = a;
                         }
                         changeUpgradePriceForAll(upgradePrices);
@@ -314,7 +315,7 @@ public class WeaponsFragment extends Fragment {
 
                         for(int i = 0; i<10; i++){
                             double a = weapons[i].calculateUpgradePrice(100);
-                            weapons[i].setUpgradeCost(a);
+                            weapons[i].setCurrentUpgradeCost(a);
                             upgradePrices[i] = a;
                         }
                         changeUpgradePriceForAll(upgradePrices);
@@ -355,33 +356,17 @@ public class WeaponsFragment extends Fragment {
         UpgradeButton u9 = getView().findViewById(R.id.upgrade_weapon_btn_9);
         UpgradeButton u10 = getView().findViewById(R.id.upgrade_weapon_btn_10);
 
-        u1.setUpgradeWeaponPrice(toString(priceArray[0]));
-        u2.setUpgradeWeaponPrice(toString(priceArray[1]));
-        u3.setUpgradeWeaponPrice(toString(priceArray[2]));
-        u4.setUpgradeWeaponPrice(toString(priceArray[3]));
-        u5.setUpgradeWeaponPrice(toString(priceArray[4]));
-        u6.setUpgradeWeaponPrice(toString(priceArray[5]));
-        u7.setUpgradeWeaponPrice(toString(priceArray[6]));
-        u8.setUpgradeWeaponPrice(toString(priceArray[7]));
-        u9.setUpgradeWeaponPrice(toString(priceArray[8]));
-        u10.setUpgradeWeaponPrice(toString(priceArray[9]));
+        u1.setUpgradeWeaponPrice(Stats.toString(priceArray[0]));
+        u2.setUpgradeWeaponPrice(Stats.toString(priceArray[1]));
+        u3.setUpgradeWeaponPrice(Stats.toString(priceArray[2]));
+        u4.setUpgradeWeaponPrice(Stats.toString(priceArray[3]));
+        u5.setUpgradeWeaponPrice(Stats.toString(priceArray[4]));
+        u6.setUpgradeWeaponPrice(Stats.toString(priceArray[5]));
+        u7.setUpgradeWeaponPrice(Stats.toString(priceArray[6]));
+        u8.setUpgradeWeaponPrice(Stats.toString(priceArray[7]));
+        u9.setUpgradeWeaponPrice(Stats.toString(priceArray[8]));
+        u10.setUpgradeWeaponPrice(Stats.toString(priceArray[9]));
 
-    }
-
-    private String toString(Double d) {
-        if(d >= 10000000) {
-            return String.format(Locale.getDefault(), "%3.3E", d);
-        }
-        else
-            return String.format(Locale.getDefault(), "%.0f", d);
-    }
-
-    private String toString(double d) {
-        if(d >= 10000000) {
-            return String.format(Locale.getDefault(), "%3.3E", d);
-        }
-        else
-            return String.format(Locale.getDefault(), "%.0f", d);
     }
 
 

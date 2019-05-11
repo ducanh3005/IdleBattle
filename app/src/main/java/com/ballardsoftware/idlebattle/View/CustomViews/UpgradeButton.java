@@ -11,8 +11,6 @@ import com.ballardsoftware.idlebattle.R;
 import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
 
-import java.util.Locale;
-
 public class UpgradeButton extends FrameLayout
         implements View.OnClickListener {
     FrameLayout upgradeWeaponBtn;
@@ -135,29 +133,13 @@ public class UpgradeButton extends FrameLayout
 
     private void upgrade(int i, ProgressBarButton p) {
         IdleViewModel.weaponsArray[i].upgrade(numberToUpgrade);
-        upgradeWeaponPrice.setText(toString(IdleViewModel.weaponsArray[i].getUpgradeCost()));
-        weaponLevel.setText(toString(IdleViewModel.weaponsArray[i].getLevel()));
+        upgradeWeaponPrice.setText(Stats.toString(IdleViewModel.weaponsArray[i].getCurrentUpgradeCost()));
+        weaponLevel.setText(Stats.toStringLevel(IdleViewModel.weaponsArray[i].getLevel()));
 
-        p.setWeaponIncome(toString(IdleViewModel.weaponsArray[i].getIncome()));
+        p.setWeaponIncome(Stats.toString(IdleViewModel.weaponsArray[i].getCurrentIncome()));
 
         TextView output = getRootView().findViewById(R.id.current_total);
-        output.setText(toString(Stats.getCurrentTotal().getValue()));
+        output.setText(Stats.toString(Stats.getCurrentTotal().getValue()));
 
-    }
-
-
-
-
-
-    private String toString(Double d) {
-        if(d >= 10000000) {
-            return String.format(Locale.getDefault(), "%3.3E", d);
-        }
-        else
-        return String.format(Locale.getDefault(), "%.0f", d);
-    }
-    private String toString(int i) {
-        return String.format(Locale.getDefault(), "%s",
-                "Lvl " + i);
     }
 }

@@ -2,6 +2,7 @@ package com.ballardsoftware.idlebattle.View;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,7 @@ public class ThemesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.themes_fragment, container,
@@ -41,7 +42,7 @@ public class ThemesFragment extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Stats.currentTotal.setValue(Stats.currentTotal.getValue() + 1000000);
+                Stats.currentTotal.setValue(Stats.currentTotal.getValue() + 1000000000);
                 //ViewUtils Utils.changeToTheme(this, Utils.DarkRed);
             }
         });
