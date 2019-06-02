@@ -22,7 +22,8 @@ public class Weapon {
     private double currentIncome;
     private final double baseUpgradeCost;
     private double currentUpgradeCost;
-    private long time;
+    private int baseTime;
+    private int currentTime;
     private int level;
     
     
@@ -32,7 +33,7 @@ public class Weapon {
 
     public Weapon(String name, double baseIncome, double currentIncome,
                   double baseUpgradeCost, double currentUpgradeCost, 
-                  long time, int level, Gamer gamer, Team team) {
+                  int baseTime, int currentTime, int level, Gamer gamer, Team team) {
 
         //super(name, basecurrentUpgradeCost, level, currentUpgradeCost, currentIncome);
         //this.time = time;
@@ -41,7 +42,8 @@ public class Weapon {
         this.currentIncome = currentIncome;
         this.baseUpgradeCost = baseUpgradeCost;
         this.currentUpgradeCost = currentUpgradeCost;
-        this.time = time;
+        this.baseTime = baseTime;
+        this.currentTime = currentTime;
         this.level = level;
         
         
@@ -72,8 +74,14 @@ public class Weapon {
     public void setCurrentUpgradeCost(double cost) {
         currentUpgradeCost = cost;
     }
-    public long getTime() {
-        return time;
+    public int getCurrentTime() {
+        return currentTime;
+    }
+    public int getBaseTime() {
+        return baseTime;
+    }
+    public void setCurrentTime(int time) {
+        currentTime = time;
     }
     public int getLevel() {
         return level;
@@ -153,7 +161,7 @@ public class Weapon {
             public void run() {
                 addcurrentIncome();
             }
-        }, 2*60*time);
+        }, 2*60*baseTime);
 
     }
 

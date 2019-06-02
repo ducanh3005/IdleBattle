@@ -38,6 +38,8 @@
         android:text="@string/dateStarted"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
+
+    <!--
     <TextView
         android:id="@+id/active_time_played"
         android:layout_width="match_parent"
@@ -48,55 +50,91 @@
         android:text="@string/activeTimePlayed"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
+        -->
     <TextView
         android:id="@+id/times_reset"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:layout_below="@id/active_time_played"
+        android:layout_below="@id/date_started"
         android:text="@string/timesReset"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
 
-    <Button
-        android:id="@+id/restart"
+    <TextView
+        android:id="@+id/prestigeMessage"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@id/times_reset"
-        android:layout_marginTop="50dp"
+        android:layout_height="20dp"
         android:layout_marginStart="4dp"
-        android:background="@color/buttonColor"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:text="@string/restart"/>
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/times_reset"
+        android:text="@string/prestigeMessage"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
 
     <Button
-        android:id="@+id/help"
+        android:id="@+id/restart_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@+id/times_reset"
-        android:layout_toEndOf="@+id/restart"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/prestigeMessage"
+        android:layout_marginTop="4dp"
         android:layout_marginStart="4dp"
-        android:background="@color/buttonColor"
+        android:background="@drawable/custom_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:text="@string/prestige"/>
+
+    <Button
+        android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/prestigeMessage"
+        android:layout_toEndOf="@+id/restart_button"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/custom_button"
+        android:clickable="true"
+        android:focusable="true"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:text="@string/help"/>
 
     <Button
-        android:id="@+id/full_restart"
+        android:id="@+id/cheat_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/prestigeMessage"
+        android:layout_toEndOf="@+id/help_button"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/custom_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:text="cheat"/>
+
+    <Button
+        android:id="@+id/full_restart_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="4dp"
         android:layout_marginStart="4dp"
-        android:background="@color/buttonColor"
+        android:background="@drawable/custom_button"
+        android:clickable="true"
+        android:focusable="true"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:text="@string/fullRestart"/>
+
+
 
 
 

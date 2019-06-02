@@ -1,109 +1,224 @@
 package com.ballardsoftware.idlebattle.View;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ballardsoftware.idlebattle.R;
+import com.ballardsoftware.idlebattle.Utilities.DatabaseHelper;
+import com.ballardsoftware.idlebattle.Utilities.Stats;
+import com.ballardsoftware.idlebattle.View.CustomViews.HelpDialog;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StatsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link StatsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class StatsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class StatsFragment extends Fragment{
 
-    private OnFragmentInteractionListener mListener;
+
+    TextView totalSinceReset;
+    TextView lifetimeTotal;
+    TextView dateStarted;
+    TextView timesReset;
 
     public StatsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StatsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StatsFragment newInstance(String param1, String param2) {
-        StatsFragment fragment = new StatsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public void setTotalSinceReset(String s) {
+        totalSinceReset.setText(s);
     }
+    public void setLifetimeTotal (String s) {
+        lifetimeTotal.setText(s);
+    }
+
+    public void setDateStarted(String s) {
+        dateStarted.setText(s);
+    }
+    public void setTimesReset(String s) {
+        timesReset.setText(s);
+    }
+
+    private View.OnClickListener fullRestartListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            fullRestartFunction();
+        }
+    };
+
+    private View.OnClickListener prestigeRestartListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(Stats.getResetTotal().getValue() >= 10000000) {
+                prestige();
+            }
+            else {
+                notEnoughMoney();
+            }
+        }
+    };
+
+    private View.OnClickListener helpListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            HelpDialog dialog = new HelpDialog();
+            dialog.showDialog(getActivity());
+        }
+    };
+
+    private View.OnClickListener cheatListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Stats.currentTotal.setValue(Stats.currentTotal.getValue() + 10000000);
+            Stats.resetTotal.setValue(Stats.getResetTotal().getValue() + 10000000);
+            Stats.lifetimeTotal.setValue(Stats.getLifetimeTotal().getValue() + 10000000);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.stats_fragment, container, false);
+        View view = inflater.inflate(R.layout.stats_fragment, container,
+                false);
+
+        Button fullRestartButton = view.findViewById(R.id.full_restart_button);
+        fullRestartButton.setOnClickListener(fullRestartListener);
+
+        Button helpButton = view.findViewById(R.id.help_button);
+        helpButton.setOnClickListener(helpListener);
+
+        Button prestigeButton = view.findViewById(R.id.restart_button);
+        prestigeButton.setOnClickListener(prestigeRestartListener);
+
+        Button cheatButton = view.findViewById(R.id.cheat_button);
+        cheatButton.setOnClickListener(cheatListener);
+
+        totalSinceReset = view.findViewById(R.id.total_since_reset);
+        lifetimeTotal = view.findViewById(R.id.lifetime_total);
+        dateStarted = view.findViewById(R.id.date_started);
+        timesReset = view.findViewById(R.id.times_reset);
+
+        final Observer<Double> resetTotalObserver = new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double resetTotal) {
+                String output = getString(R.string.totalSinceReset,
+                        Stats.toString(resetTotal));
+                totalSinceReset.setText(output);
+            }
+        };
+        Stats.getResetTotal().observe(this, resetTotalObserver);
+
+        final Observer<Double> lifetimeTotalObserver = new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double lifeTotal) {
+                String output = getString(R.string.lifetimeTotal,
+                        Stats.toString(lifeTotal));
+                lifetimeTotal.setText(output);
+            }
+        };
+        Stats.getLifetimeTotal().observe(this, lifetimeTotalObserver);
+
+        String datePattern = "MMM-dd-YYYY";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern,
+                Locale.getDefault());
+        String date = dateFormat.format(Stats.dateStarted);
+        String startDate = getString(R.string.dateStarted,
+                date);
+        dateStarted.setText(startDate);
+
+        String reset = getString(R.string.timesReset,
+                Stats.toString(Stats.timesReset));
+        timesReset.setText(reset);
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void prestige() {
+        DatabaseHelper dbh = new DatabaseHelper(getContext());
+        final SQLiteDatabase db = getContext().openOrCreateDatabase(
+                "IdleBattleDB.db", 0, null);
+
+        double prestigeBonus = Stats.prestigeXP + 0.25;
+        int resetNumber = Stats.timesReset+1;
+
+        System.out.println("Times Reset: " +Stats.timesReset);
+
+        System.out.println("Reset#: " + resetNumber);
+
+        //dbh.delete(db);
+        dbh.initializeData(db, prestigeBonus,
+                Stats.getLifetimeTotal().getValue(), resetNumber, 2);
+
+
+        //MainActivity.resetPreferences();
+        Intent mStartActivity = new Intent(getContext(), MainActivity.class);
+        int mPendingIntentId = 1234567;
+        PendingIntent mPendingIntent = PendingIntent.getActivity(getContext(),
+                mPendingIntentId, mStartActivity,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager)getContext().getSystemService(
+                Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis()
+                + 100, mPendingIntent);
+        System.exit(0);
+    }
+
+    private void fullRestartFunction() {
+
+        DatabaseHelper dbh = new DatabaseHelper(getContext());
+        final SQLiteDatabase db = getContext().openOrCreateDatabase(
+                "IdleBattleDB.db", 0, null);
+
+        dbh.delete(db);
+
+        final String PREFS_NAME = "PrefsFile";
+
+        SharedPreferences settings = getContext().getSharedPreferences(PREFS_NAME, 0);
+
+        settings.edit().putBoolean("first_time_launched", true).apply();
+
+        //MainActivity.resetPreferences();
+        Intent mStartActivity = new Intent(getContext(), MainActivity.class);
+        int mPendingIntentId = 123456;
+        PendingIntent mPendingIntent = PendingIntent.getActivity(getContext(),
+                mPendingIntentId, mStartActivity,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager)getContext().getSystemService(
+                Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis()
+                + 100, mPendingIntent);
+        System.exit(0);
+    }
+
+    Toast toast;
+    private void notEnoughMoney() {
+
+        if(toast != null) {
+            toast.cancel();
+        }
+        toast = Toast.makeText(getContext(), "Not Enough Total Since Reset", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

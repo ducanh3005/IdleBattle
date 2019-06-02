@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IdleBattle</string>
+    <string name="app_name">IdleBattleRoyale</string>
 
     <string name="weapons">Weapons</string>
     <string name="gamers">Gamers</string>
@@ -79,20 +79,31 @@
     <string name="achievement20">Play For\n\n1 Year\n\nBonus: 1,000,000,000,000</string>
 
     <!--Stats-->
-    <string name="totalSinceReset">Total Since Reset: </string>
-    <string name="lifetimeTotal">Lifetime Total Earned: </string>
-    <string name="dateStarted">Date Started Playing: </string>
-    <string name="activeTimePlayed">Active Time Played: </string>
-    <string name="timesReset">Times Reset: </string>
-    <string name="restart">Restart</string>
+    <string name="totalSinceReset">Total Since Reset: %1$s</string>
+    <string name="lifetimeTotal">Lifetime Total Earned: %1$s</string>
+    <string name="dateStarted">Date Started Playing: %1$s</string>
+    <string name="activeTimePlayed">Active Time Played: %1$s</string>
+    <string name="timesReset">Times Prestiged: %1$s</string>
+    <string name="prestige">Prestige</string>
     <string name="fullRestart">Full Restart</string>
     <string name="help">Help</string>
+    <string name="prestigeMessage">Prestige After Earning 1.00E+7 Since Reset</string>
 
 
     <!--Away Message-->
-    <string name="away">While You Were Away</string>
+    <string name="away">You Were Away For</string>
+    <string name="earned">Earning</string>
     <string name="doubleMoney">Watch an ad for double the money: %1$s</string>
     <string name="ok">OK</string>
     <string name="watchAd">Watch Ad</string>
+
+    <!--Help Message-->
+    <string name="helpTitle">Help</string>
+    <string name="helpMessage">
+        1. Weapons are used to earn money from tournaments.\n\n
+        2. Gamers use the weapons to automatically earn money.\n\n
+        3. Teams provide a bonus to the Gamer in their team.\n\n
+        4. Prestige to earn a bonus for weapon income.\n\n\n
+        Money can be earned even while away.</string>
 
 </resources>

@@ -1,6 +1,8 @@
 package com.ballardsoftware.idlebattle.View;
 
 import android.arch.lifecycle.Observer;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +22,7 @@ import com.ballardsoftware.idlebattle.Model.Weapon;
 import com.ballardsoftware.idlebattle.R;
 import com.ballardsoftware.idlebattle.Utilities.DatabaseHelper;
 import com.ballardsoftware.idlebattle.Utilities.Stats;
-import com.ballardsoftware.idlebattle.View.CustomViews.ViewDialog;
+import com.ballardsoftware.idlebattle.View.CustomViews.HelpDialog;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
 
 import java.text.DateFormat;
@@ -30,6 +32,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import static com.ballardsoftware.idlebattle.ViewModel.IdleViewModel.weaponsArray;
 
 public class MainActivity extends AppCompatActivity
         implements GamersFragment.OnFragmentInteractionListener,
@@ -49,14 +53,25 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        DatabaseHelper dbh = new DatabaseHelper(this);
+        final SQLiteDatabase db = this.openOrCreateDatabase("IdleBattleDB.db", 0, null);
+
         //SharedPreferences pref = getSharedPreferences("SaveData", 0);
         //final SharedPreferences.Editor editor = pref.edit();
 
-        startGame();
+
+        //checkVersion(db, dbh);
+
+        startGame(db, dbh);
+        firstLaunch();
 
         setContentView(R.layout.activity_main);
 
@@ -80,41 +95,36 @@ public class MainActivity extends AppCompatActivity
                       //  "%.0f", currentTotal));
                 output.setText(Stats.toString(currentTotal));
 
-
-
-
-
-
-
                 //todo update upgrade prices for max
                 //if set to buyMax
                 //calculate buyMax
                 //update weapon UpgradePrice
                 //update UpgradeButton.numberToUpgrade
                 //update UpgradeButton.setUpgradePrice
-
             }
         };
 
         Stats.getCurrentTotal().observe(this, totalObserver);
 
+
+
         //IdleViewModel.startGame();
 
-        progressWhileAway();
+        //progressWhileAway();
 
         //if not a fresh game -- if valueWhileAway > 0 ?
-        ViewDialog dialog = new ViewDialog();
+        //ViewDialog dialog = new ViewDialog();
         //dialog.showDialog(this);
 
 
         final Handler handler = new Handler();
-        final int delay = 5000;
+        final int delay = 3000;
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 DatabaseHelper dbh = new DatabaseHelper(getBaseContext());
-                dbh.saveToDatabase(IdleViewModel.weaponsArray);
+                dbh.saveToDatabase(weaponsArray, db);
                 handler.postDelayed(this, delay);
             }
         }, delay);
@@ -136,9 +146,9 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new WeaponsFragment(), "Weapons");
         adapter.addFragment(new GamersFragment(), "Gamers");
         adapter.addFragment(new TeamsFragment(), "Teams");
-        adapter.addFragment(new AchievementsFragment(), "Achievements");
+        //adapter.addFragment(new AchievementsFragment(), "Achievements");
         adapter.addFragment(new StatsFragment(), "Stats");
-        adapter.addFragment(new ThemesFragment(), "Themes");
+        //adapter.addFragment(new ThemesFragment(), "Themes");
         viewPager.setAdapter(adapter);
     }
 
@@ -184,17 +194,20 @@ public class MainActivity extends AppCompatActivity
     //then onRestart() then onStart()
 
     @Override
-    protected void onResume() {
+    protected void onPause() {
         DatabaseHelper dbh = new DatabaseHelper(getBaseContext());
-        dbh.saveToDatabase(IdleViewModel.weaponsArray);
+        final SQLiteDatabase db = this.openOrCreateDatabase("IdleBattleDB.db", 0, null);
+        dbh.saveToDatabase(weaponsArray, db);
 
-        super.onResume();
+        super.onPause();
     }
 
 
     @Override
-    protected void onStop() {DatabaseHelper dbh = new DatabaseHelper(getBaseContext());
-        dbh.saveToDatabase(IdleViewModel.weaponsArray);
+    protected void onStop() {
+        DatabaseHelper dbh = new DatabaseHelper(getBaseContext());
+        final SQLiteDatabase db = this.openOrCreateDatabase("IdleBattleDB.db", 0, null);
+        dbh.saveToDatabase(weaponsArray, db);
 
         super.onStop();
     }
@@ -202,14 +215,36 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         DatabaseHelper dbh = new DatabaseHelper(getBaseContext());
-        dbh.saveToDatabase(IdleViewModel.weaponsArray);
+        final SQLiteDatabase db = this.openOrCreateDatabase("IdleBattleDB.db", 0, null);
+        dbh.saveToDatabase(weaponsArray,db);
 
         super.onDestroy();
     }
 
 
+    public void firstLaunch() {
+        final String PREFS_NAME = "PrefsFile";
 
-    public void startGame() {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if(settings.getBoolean("first_time_launched", true)) {
+            System.out.println("first");
+            HelpDialog dialog = new HelpDialog();
+            dialog.showDialog(this);
+            settings.edit().putBoolean("first_time_launched", false).apply();
+        }
+    }
+
+    public void resetPreferences() {
+        final String PREFS_NAME = "PrefsFile";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        settings.edit().putBoolean("first_time_launched", false).apply();
+    }
+
+
+    public void startGame(SQLiteDatabase db, DatabaseHelper dbh) {
 
 
 
@@ -245,13 +280,13 @@ public class MainActivity extends AppCompatActivity
             //Stats.setCurrentTotal(test);
             //Stats.getCurrentTotal().setValue(0.0);
         //}
-        DatabaseHelper dbh = new DatabaseHelper(this);
+        //DatabaseHelper dbh = new DatabaseHelper(this);
         //dbh.execSQL("DROP TABLE IF EXISTS "+weaponsTable);
         //dbh.execSQL("DROP TABLE IF EXISTS "+gamerTable);
         //dbh.execSQL("DROP TABLE IF EXISTS "+teamTable);
         //dbh.execSQL("DROP TABLE IF EXISTS "+statsTable);
 
-        //dbh.delete();
+        //dbh.delete(db);
 
         //dbh.saveToDatabase(weaponsArray);
         Weapon[] weaponsArray = new Weapon[10];
@@ -269,7 +304,8 @@ public class MainActivity extends AppCompatActivity
         final String weaponIncome="WeaponIncome";
         final String weaponBaseUpgradeCost="WeaponBaseUpgradeCost";
         final String weaponUpgradeCost="WeaponUpgradeCost";
-        final String weaponUpgradeTime="WeaponUpgradeTime";
+        final String weaponBaseTime="WeaponBaseTime";
+        final String weaponCurrentTime="WeaponCurrentTime";
         final String weaponLevel="WeaponLevel";
 
         final String gamerTable="Gamers";
@@ -291,27 +327,28 @@ public class MainActivity extends AppCompatActivity
 
 
         //String [] gamerNames = dbh.getGamerNames();
-        String [] gamerNames = dbh.getColumn(gamerTable, gamerName);
-        String [] gamerBasePrices = dbh.getColumn(gamerTable, gamerBasePrice);
-        String [] gamerLevels = dbh.getColumn(gamerTable, gamerLevel);
-        String [] gamerUpgradeCosts = dbh.getColumn(gamerTable, gamerUpgradeCost);
-        String [] gamerTimes = dbh.getColumn(gamerTable, gamerTime);
+        String [] gamerNames = dbh.getColumn(gamerTable, gamerName, db);
+        String [] gamerBasePrices = dbh.getColumn(gamerTable, gamerBasePrice, db);
+        String [] gamerLevels = dbh.getColumn(gamerTable, gamerLevel, db);
+        String [] gamerUpgradeCosts = dbh.getColumn(gamerTable, gamerUpgradeCost, db);
+        String [] gamerTimes = dbh.getColumn(gamerTable, gamerTime, db);
 
-        String [] teamNames = dbh.getColumn(teamTable, teamName);
-        String [] teamBasePrices = dbh.getColumn(teamTable, teamBasePrice);
-        String [] teamLevels = dbh.getColumn(teamTable, teamLevel);
-        String [] teamUpgradeCosts = dbh.getColumn(teamTable, teamUpgradeCost);
-        String [] teamBonuses = dbh.getColumn(teamTable, teamBonus);
+        String [] teamNames = dbh.getColumn(teamTable, teamName, db);
+        String [] teamBasePrices = dbh.getColumn(teamTable, teamBasePrice, db);
+        String [] teamLevels = dbh.getColumn(teamTable, teamLevel, db);
+        String [] teamUpgradeCosts = dbh.getColumn(teamTable, teamUpgradeCost, db);
+        String [] teamBonuses = dbh.getColumn(teamTable, teamBonus, db);
 
-        String [] weaponNames = dbh.getColumn(weaponsTable, weaponName);
-        String [] weaponBaseIncomes = dbh.getColumn(weaponsTable, weaponBaseIncome);
-        String [] weaponCurrentIncomes = dbh.getColumn(weaponsTable, weaponIncome);
-        String [] weaponBaseUpgradeCosts = dbh.getColumn(weaponsTable, weaponBaseUpgradeCost);
-        String [] weaponCurrentUpgradeCosts = dbh.getColumn(weaponsTable, weaponUpgradeCost);
-        String [] weaponTimes = dbh.getColumn(weaponsTable, weaponUpgradeTime);
-        String [] weaponLevels = dbh.getColumn(weaponsTable, weaponLevel);
+        String [] weaponNames = dbh.getColumn(weaponsTable, weaponName, db);
+        String [] weaponBaseIncomes = dbh.getColumn(weaponsTable, weaponBaseIncome, db);
+        String [] weaponCurrentIncomes = dbh.getColumn(weaponsTable, weaponIncome, db);
+        String [] weaponBaseUpgradeCosts = dbh.getColumn(weaponsTable, weaponBaseUpgradeCost, db);
+        String [] weaponCurrentUpgradeCosts = dbh.getColumn(weaponsTable, weaponUpgradeCost, db);
+        String [] weaponBaseTimes = dbh.getColumn(weaponsTable, weaponBaseTime, db);
+        String [] weaponCurrentTimes = dbh.getColumn(weaponsTable, weaponCurrentTime, db);
+        String [] weaponLevels = dbh.getColumn(weaponsTable, weaponLevel, db);
 
-        String [] stats = dbh.getStats();
+        String [] stats = dbh.getStats(db);
 
         Stats.setCurrentTotal(Double.valueOf(stats[0]));
         Stats.setResetTotal(Double.valueOf(stats[1]));
@@ -319,7 +356,8 @@ public class MainActivity extends AppCompatActivity
         Stats.prestigeXP = Double.parseDouble(stats[3]);
         Stats.multiplier = Double.parseDouble(stats[4]);
         String dateStarted = stats[5];
-
+        String exitTime = stats[6];
+        Stats.timesReset = Integer.parseInt(stats[7]);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
                 Locale.getDefault());
@@ -332,7 +370,7 @@ public class MainActivity extends AppCompatActivity
 
 
         Stats.dateStarted = startDate;
-        String exitTime = stats[6];
+
         Date exitDate = null;
         try {
             exitDate = dateFormat.parse(exitTime);
@@ -359,7 +397,8 @@ public class MainActivity extends AppCompatActivity
                     Double.parseDouble(weaponCurrentIncomes[i]),
                     Double.parseDouble(weaponBaseUpgradeCosts[i]),
                     Double.parseDouble(weaponCurrentUpgradeCosts[i]),
-                    Long.parseLong(weaponTimes[i]),
+                    Integer.parseInt(weaponBaseTimes[i]),
+                    Integer.parseInt(weaponCurrentTimes[i]),
                     Integer.parseInt(weaponLevels[i]),
                     gamersArray[i], teamsArray[i]);
         }
@@ -383,29 +422,11 @@ public class MainActivity extends AppCompatActivity
         //calculate amounts earned from last time played for each weapon
     }
 
-    private void progressWhileAway(){
-
-        Date startTime = new Date();
-
-        DateFormat startDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss",
-                Locale.getDefault());
-
-
-        //double start = Double.valueOf(startTime);
-        System.out.println("\n\nStart Time: "+startTime);
-        //String endTime = Stats.toString(Stats.exitTime);
-        System.out.println("Exit Time: "+Stats.exitTime+"\n\n");
-        //double exit = Double.valueOf(endTime);
-
-        long timeDifference = startTime.getTime() - Stats.exitTime.getTime();
-        System.out.println("time difference: " + timeDifference);
-
-
-    }
 
 
 
-    //todo use gson only for themes
+
+    //todo use sharedpreverences only for themes
 
     /*
     private void saveGame(SharedPreferences.Editor editor) {

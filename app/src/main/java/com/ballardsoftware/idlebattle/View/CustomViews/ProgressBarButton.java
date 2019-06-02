@@ -173,28 +173,30 @@ public class ProgressBarButton extends FrameLayout
         //final ProgressBar m_bar = m_button.progressBar;
 
         //final ProgressBar m_bar = progressBar;
-        final TextView t = progressText;
-        final TextView r = weaponIncome;
+        //final TextView t = progressText;
+        //final TextView r = weaponIncome;
 
         //m_bar.setMax(10000);
-        progressBar.setMax(maxTime()[0]);
-        int m_total = 0;
+        progressBar.setMax(weapon.getBaseTime());
+        //int m_total = 0;
 
         //m_bar
-        progressBar.setProgress(m_total);
+        progressBar.setProgress(0);
 
         //final int totalMsecs = 10 * 1000 + 200;
         int callInterval = 100;
+        weapon.setCurrentTime(100);
 
-
-        new CountDownTimer(maxTime()[0], callInterval) {
+        new CountDownTimer(weapon.getBaseTime(), callInterval) {
             public void onTick(long millisUntilFinished) {
                 //int secondsRemainging = (int) millisUntilFinished / 1000;
                 //float fraction = millisUntilFinished / (float) totalMsecs;
-                float fraction = maxTime()[0] - millisUntilFinished;
+                //float fraction = maxTime()[0] - millisUntilFinished;
                 //m_bar.setProgress((int) (fraction * 100));
                 //m_bar.setProgress((int) (100000 - millisUntilFinished));
-                progressBar.setProgress(count+=100);
+                //progressBar.setProgress(count+=100);
+                weapon.setCurrentTime(weapon.getCurrentTime() + 100);
+                progressBar.setProgress(weapon.getCurrentTime());
                 //System.out.println(progressBar.getProgress());
                 //System.out.println(view.id);
                 //t.setText(Integer.toString(count));
@@ -204,12 +206,13 @@ public class ProgressBarButton extends FrameLayout
 
             public void onFinish() {
                 progressBar.setProgress(0);
-                count = 100;
+                weapon.setCurrentTime(0);
+                //count = 100;//
                 //t.setText("Fist");
                 //count = 0;
                 //Log.d(TAG, ">>>>>>>>countdowntimer on finish");
                 //t.setText(IdleViewModel.progressFinished(100));
-                IdleViewModel.progressFinished(maxTime()[1]);
+                IdleViewModel.progressFinished(getWeaponNumber(weapon));
                 //t.setText(String.format(Locale.getDefault(), "%.0f",
                         //Stats.getCurrentTotal()));
 
@@ -230,6 +233,73 @@ public class ProgressBarButton extends FrameLayout
 
             }
         }.start();
+    }
+
+    //set progressBar for when returning to the game
+    public void setReturnProgress(final Weapon weapon) {
+
+        if(weapon.getCurrentTime() > 0 || weapon.getGamer().getLevel() > 0) {
+            //System.out.println(weapon.getName() + " Progress Time: " + weapon.getCurrentTime());
+            //System.out.println(weapon.getName() + " name");
+            progressBar.setMax(weapon.getBaseTime());
+            //System.out.println(weapon.getName() + " max time: " + weapon.getBaseTime());
+            progressBar.setProgress(weapon.getCurrentTime());
+            //System.out.println("Progress: " + weapon.getCurrentTime());
+
+            int callInterval = 100;
+            //weapon.setCurrentTime(weapon.getCurrentTime() + 100);
+
+            new CountDownTimer(weapon.getBaseTime() - weapon.getCurrentTime(), callInterval) {
+                public void onTick(long millisUntilFinished) {
+                    weapon.setCurrentTime(weapon.getCurrentTime() + 100);
+                    if(weapon.getCurrentTime() >= 0) {
+                        progressBar.setProgress(weapon.getCurrentTime());
+                    }
+
+                    //System.out.println(weapon.getName() + " current progress: " + weapon.getCurrentTime());
+                }
+
+                public void onFinish() {
+                    progressBar.setProgress(0);
+                    //count = 100;
+                    weapon.setCurrentTime(0);
+                    IdleViewModel.progressFinished(getWeaponNumber(weapon));
+
+                    if(progressBar.getProgress() == 0 &&
+                            weapon.getGamer().getLevel() > 0) {
+                        autoClicker(weapon);
+                    }
+                }
+            }.start();
+        }
+
+    }
+
+    //todo: make better way to do this
+    private static int getWeaponNumber(Weapon weapon) {
+        switch (weapon.getName()) {
+            case "Fist":
+                return 0;
+            case "Super Punch Gloves":
+                return 1;
+            case "Combat Knife":
+                return 2;
+            case "Target Pistol":
+                return 3;
+            case "Quail Shotgun":
+                return 4;
+            case "Q18 Automatic":
+                return 5;
+            case "Military Rifle":
+                return 6;
+            case "Grenade Thrower":
+                return 7;
+            case "Missile Stick":
+                return 8;
+            case "Big Laser Alien Gun":
+                return 9;
+        }
+        return 10;
     }
 
 

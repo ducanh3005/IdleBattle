@@ -59,10 +59,25 @@ public class IdleViewModel extends ViewModel {
     //called in ProgressBarButton after the progress countdown is finished
     public static void progressFinished(int weaponNumber) {
         Double income = weaponsArray[weaponNumber].getCurrentIncome();
+
+        if(Stats.getResetTotal().getValue() != null) {
+            Stats.resetTotal.setValue(Stats.getResetTotal().getValue()
+                    + income);
+        }
+
+
+        if(Stats.getLifetimeTotal().getValue() != null) {
+            Stats.lifetimeTotal.setValue(Stats.getLifetimeTotal().getValue()
+                    + income);
+        }
         if(Stats.getCurrentTotal().getValue() != null) {
             income += Stats.getCurrentTotal().getValue();
         }
         Stats.currentTotal.setValue(income);
+
+
+
+
         //currentTotal.setValue(String.format(Locale.getDefault(), "%.0f",
                 //Stats.getCurrentTotal()));
         //currentTotal.setValue(Stats.getCurrentTotal());

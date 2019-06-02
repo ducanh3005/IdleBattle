@@ -24,7 +24,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/background">
 
                 <TextView
                     android:id="@+id/messageStart"
@@ -35,21 +36,34 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:text="@string/away"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/timeAway"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/messageStart"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/messageEarned"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/messageStart"
+                    android:layout_below="@id/timeAway"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="You Earned"
+                    android:text="@string/earned"
                     android:textSize="18sp"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -58,11 +72,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/messageEarned"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="$1000"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
 
@@ -79,7 +92,8 @@
                     android:gravity="center"
                     android:text="@string/doubleMoney"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorPrimary"/>
 
                     <Button
                         android:id="@+id/okButton"
@@ -88,6 +102,10 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="10dp"
                         android:layout_toStartOf="@+id/centerPoint"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/custom_button"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="@string/ok"/>
 
                 <TextView
@@ -104,6 +122,10 @@
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="10dp"
                         android:layout_toEndOf="@id/centerPoint"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/custom_button"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="@string/watchAd"/>
 
 

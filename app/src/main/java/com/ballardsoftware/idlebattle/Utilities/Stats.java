@@ -2,6 +2,7 @@ package com.ballardsoftware.idlebattle.Utilities;
 
 import android.arch.lifecycle.MutableLiveData;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,12 +13,13 @@ final public class Stats {
 
     //each should be livedata
     public static MutableLiveData<Double> currentTotal;
-    private static MutableLiveData<Double> resetTotal;
-    private static MutableLiveData<Double> lifetimeTotal;
-    public static double prestigeXP= 0;
+    public static MutableLiveData<Double> resetTotal;
+    public static MutableLiveData<Double> lifetimeTotal;
+    public static double prestigeXP;
     public static double multiplier = 1.12;
     public static Date dateStarted;
     public static Date exitTime;
+    public static int timesReset;
 
     //number of days played
     //date started
@@ -85,18 +87,25 @@ final public class Stats {
 
     public static String toString(Double d) {
         if(d >= 10000000) {
-            return String.format(Locale.getDefault(), "%3.3E", d);
+            return String.format(Locale.getDefault(), "$%3.2E", d);
         }
-        else
-            return String.format(Locale.getDefault(), "%.0f", d);
+        else {
+            DecimalFormat formatter = new DecimalFormat("$#,###,###");
+            return  formatter.format(d);
+        }
+            //return String.format(Locale.getDefault(), "%.0f", d);
+
+
     }
 
     public static String toString(double d) {
         if(d >= 10000000) {
-            return String.format(Locale.getDefault(), "%3.3E", d);
+            return String.format(Locale.getDefault(), "$%3.2E", d);
         }
-        else
-            return String.format(Locale.getDefault(), "%.0f", d);
+        else {
+            DecimalFormat formatter = new DecimalFormat("$#,###,###");
+            return  formatter.format(d);
+        }
     }
 
     public static String toStringLevel(int num) {
@@ -106,6 +115,10 @@ final public class Stats {
     public static String toString (Date date) {
         return String.format(Locale.getDefault(),
                 "%s", date);
+    }
+    public static String toString (int i) {
+        return String.format(Locale.getDefault(),
+                "%s", i);
     }
 
 
