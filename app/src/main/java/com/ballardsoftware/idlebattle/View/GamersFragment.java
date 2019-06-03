@@ -14,13 +14,12 @@ import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.View.CustomViews.GamersAndTeamsButton;
 import com.ballardsoftware.idlebattle.ViewModel.IdleViewModel;
 
-public class GamersFragment extends Fragment
-        implements View.OnClickListener{
+public class GamersFragment extends Fragment{
 
 
 
     public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 
     public GamersFragment() {
@@ -35,7 +34,6 @@ public class GamersFragment extends Fragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-         //Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.gamers_fragment, container,
                 false);
 
@@ -64,29 +62,26 @@ public class GamersFragment extends Fragment
         b10.setName(weaponsArray1[9].getGamer().getName());
 
 
-        /*
-        b1.setName(getContext().getString(R.string.gamer1));
-        b2.setName(getContext().getString(R.string.gamer2));
-        b3.setName(getContext().getString(R.string.gamer3));
-        b4.setName(getContext().getString(R.string.gamer4));
-        b5.setName(getContext().getString(R.string.gamer5));
-        b6.setName(getContext().getString(R.string.gamer6));
-        b7.setName(getContext().getString(R.string.gamer7));
-        b8.setName(getContext().getString(R.string.gamer8));
-        b9.setName(getContext().getString(R.string.gamer9));
-        b10.setName(getContext().getString(R.string.gamer10));
-        */
-
-        b1.setLevel(Stats.toStringLevel(weaponsArray1[0].getGamer().getLevel()));
-        b2.setLevel(Stats.toStringLevel(weaponsArray1[1].getGamer().getLevel()));
-        b3.setLevel(Stats.toStringLevel(weaponsArray1[2].getGamer().getLevel()));
-        b4.setLevel(Stats.toStringLevel(weaponsArray1[3].getGamer().getLevel()));
-        b5.setLevel(Stats.toStringLevel(weaponsArray1[4].getGamer().getLevel()));
-        b6.setLevel(Stats.toStringLevel(weaponsArray1[5].getGamer().getLevel()));
-        b7.setLevel(Stats.toStringLevel(weaponsArray1[6].getGamer().getLevel()));
-        b8.setLevel(Stats.toStringLevel(weaponsArray1[7].getGamer().getLevel()));
-        b9.setLevel(Stats.toStringLevel(weaponsArray1[8].getGamer().getLevel()));
-        b10.setLevel(Stats.toStringLevel(weaponsArray1[9].getGamer().getLevel()));
+        b1.setLevel(Stats.toStringLevel(
+                weaponsArray1[0].getGamer().getLevel()));
+        b2.setLevel(Stats.toStringLevel(
+                weaponsArray1[1].getGamer().getLevel()));
+        b3.setLevel(Stats.toStringLevel(
+                weaponsArray1[2].getGamer().getLevel()));
+        b4.setLevel(Stats.toStringLevel(
+                weaponsArray1[3].getGamer().getLevel()));
+        b5.setLevel(Stats.toStringLevel(
+                weaponsArray1[4].getGamer().getLevel()));
+        b6.setLevel(Stats.toStringLevel(
+                weaponsArray1[5].getGamer().getLevel()));
+        b7.setLevel(Stats.toStringLevel(
+                weaponsArray1[6].getGamer().getLevel()));
+        b8.setLevel(Stats.toStringLevel(
+                weaponsArray1[7].getGamer().getLevel()));
+        b9.setLevel(Stats.toStringLevel(
+                weaponsArray1[8].getGamer().getLevel()));
+        b10.setLevel(Stats.toStringLevel(
+                weaponsArray1[9].getGamer().getLevel()));
 
         b1.setUpgradeCost(Stats.toString(
                 weaponsArray1[0].getGamer().getUpgradeCost()));
@@ -109,56 +104,7 @@ public class GamersFragment extends Fragment
         b10.setUpgradeCost(Stats.toString(
                 weaponsArray1[9].getGamer().getUpgradeCost()));
 
-
-        //b1.setOnClickListener(this);
-        //b1.upgradeButton.setOnClickListener(this);
-        //b1.getUpgradeButton().setOnClickListener(this);
-
         return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-        //upgradeGamer();
-    }
-
-
-    public static void upgradeGamer(View v) {
-
-        switch (v.getId()) {
-            case R.id.gamer_upgrade_1:
-                IdleViewModel.weaponsArray[0].getGamer().upgrade(0);
-                GamersAndTeamsButton b1 =
-                        v.findViewById(R.id.gamer_upgrade_1);
-                if(IdleViewModel.weaponsArray[0].getGamer().getLevel() == 10) {
-                    b1.setUpgradeCost("Max");
-                }
-                else
-                b1.setUpgradeCost(Stats.toString(IdleViewModel.weaponsArray[0].
-                        getGamer().getUpgradeCost()));
-                b1.setLevel(Stats.toString(IdleViewModel.weaponsArray[0].
-                        getGamer().getLevel()));
-                break;
-            case R.id.gamer_upgrade_2:
-                break;
-            case R.id.gamer_upgrade_3:
-                break;
-            case R.id.gamer_upgrade_4:
-                break;
-            case R.id.gamer_upgrade_5:
-                break;
-            case R.id.gamer_upgrade_6:
-                break;
-            case R.id.gamer_upgrade_7:
-                break;
-            case R.id.gamer_upgrade_8:
-                break;
-            case R.id.gamer_upgrade_9:
-                break;
-            case R.id.gamer_upgrade_10:
-                break;
-
-        }
     }
 
 }

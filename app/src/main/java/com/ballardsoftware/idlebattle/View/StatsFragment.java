@@ -38,19 +38,6 @@ public class StatsFragment extends Fragment{
         // Required empty public constructor
     }
 
-    public void setTotalSinceReset(String s) {
-        totalSinceReset.setText(s);
-    }
-    public void setLifetimeTotal (String s) {
-        lifetimeTotal.setText(s);
-    }
-
-    public void setDateStarted(String s) {
-        dateStarted.setText(s);
-    }
-    public void setTimesReset(String s) {
-        timesReset.setText(s);
-    }
 
     private View.OnClickListener fullRestartListener = new View.OnClickListener() {
         @Override
@@ -82,9 +69,12 @@ public class StatsFragment extends Fragment{
     private View.OnClickListener cheatListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Stats.currentTotal.setValue(Stats.currentTotal.getValue() + 10000000);
-            Stats.resetTotal.setValue(Stats.getResetTotal().getValue() + 10000000);
-            Stats.lifetimeTotal.setValue(Stats.getLifetimeTotal().getValue() + 10000000);
+            Stats.currentTotal.setValue(Stats.currentTotal.getValue()
+                    + 10000000);
+            Stats.resetTotal.setValue(Stats.getResetTotal().getValue()
+                    + 10000000);
+            Stats.lifetimeTotal.setValue(Stats.getLifetimeTotal().getValue()
+                    + 10000000);
         }
     };
 
@@ -136,7 +126,7 @@ public class StatsFragment extends Fragment{
         };
         Stats.getLifetimeTotal().observe(this, lifetimeTotalObserver);
 
-        String datePattern = "MMM-dd-YYYY";
+        String datePattern = "MMM-dd-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern,
                 Locale.getDefault());
         String date = dateFormat.format(Stats.dateStarted);
@@ -156,23 +146,17 @@ public class StatsFragment extends Fragment{
     }
 
     private void prestige() {
-        DatabaseHelper dbh = new DatabaseHelper(getContext());
+        DatabaseHelper dbh = DatabaseHelper.getInstance(getContext());
         final SQLiteDatabase db = getContext().openOrCreateDatabase(
                 "IdleBattleDB.db", 0, null);
 
         double prestigeBonus = Stats.prestigeXP + 0.25;
         int resetNumber = Stats.timesReset+1;
 
-        System.out.println("Times Reset: " +Stats.timesReset);
-
-        System.out.println("Reset#: " + resetNumber);
-
-        //dbh.delete(db);
         dbh.initializeData(db, prestigeBonus,
                 Stats.getLifetimeTotal().getValue(), resetNumber, 2);
 
 
-        //MainActivity.resetPreferences();
         Intent mStartActivity = new Intent(getContext(), MainActivity.class);
         int mPendingIntentId = 1234567;
         PendingIntent mPendingIntent = PendingIntent.getActivity(getContext(),
@@ -187,7 +171,7 @@ public class StatsFragment extends Fragment{
 
     private void fullRestartFunction() {
 
-        DatabaseHelper dbh = new DatabaseHelper(getContext());
+        DatabaseHelper dbh = DatabaseHelper.getInstance(getContext());
         final SQLiteDatabase db = getContext().openOrCreateDatabase(
                 "IdleBattleDB.db", 0, null);
 
@@ -195,11 +179,11 @@ public class StatsFragment extends Fragment{
 
         final String PREFS_NAME = "PrefsFile";
 
-        SharedPreferences settings = getContext().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = getContext().getSharedPreferences(
+                PREFS_NAME, 0);
 
         settings.edit().putBoolean("first_time_launched", true).apply();
 
-        //MainActivity.resetPreferences();
         Intent mStartActivity = new Intent(getContext(), MainActivity.class);
         int mPendingIntentId = 123456;
         PendingIntent mPendingIntent = PendingIntent.getActivity(getContext(),
@@ -218,7 +202,8 @@ public class StatsFragment extends Fragment{
         if(toast != null) {
             toast.cancel();
         }
-        toast = Toast.makeText(getContext(), "Not Enough Total Since Reset", Toast.LENGTH_SHORT);
+        toast = Toast.makeText(getContext(),
+                "Not Enough Total Since Reset", Toast.LENGTH_SHORT);
         toast.show();
     }
 }

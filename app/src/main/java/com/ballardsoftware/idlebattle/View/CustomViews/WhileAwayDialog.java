@@ -2,8 +2,10 @@ package com.ballardsoftware.idlebattle.View.CustomViews;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.AppCompatButton;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -19,7 +21,8 @@ public class WhileAwayDialog {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.while_away_dialog);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         TextView moneyEarned = dialog.findViewById(R.id.moneyEarned);
         moneyEarned.setText(Stats.toString(value));
@@ -34,7 +37,6 @@ public class WhileAwayDialog {
         adButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(),"Cancel" ,Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
@@ -43,13 +45,24 @@ public class WhileAwayDialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(),"Okay" ,Toast.LENGTH_SHORT).show();
                 dialog.cancel();
             }
         });
 
         dialog.show();
+
+        dialog.setOnKeyListener(new Dialog.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode,
+                                 KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_BACK) {
+                    dialog.dismiss();
+                }
+                return true;
+            }
+        });
     }
+
 
     private String timeString(long time) {
         long seconds = time / 1000;

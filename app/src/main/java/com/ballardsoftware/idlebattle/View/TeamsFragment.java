@@ -32,7 +32,6 @@ public class TeamsFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.teams_fragment, container,
                 false);
 
@@ -59,8 +58,6 @@ public class TeamsFragment extends Fragment{
         b8.setName(weaponsArray1[7].getTeam().getName());
         b9.setName(weaponsArray1[8].getTeam().getName());
         b10.setName(weaponsArray1[9].getTeam().getName());
-
-
 
         b1.setLevel(Stats.toStringLevel(weaponsArray1[0].getTeam().getLevel()));
         b2.setLevel(Stats.toStringLevel(weaponsArray1[1].getTeam().getLevel()));

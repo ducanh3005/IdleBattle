@@ -18,6 +18,8 @@ import static java.lang.System.currentTimeMillis;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static DatabaseHelper instance = null;
+
     private static final String dbName="IdleBattleDB";
     private static final String weaponsTable="Weapons";
     private static final String weaponID="WeaponID";
@@ -31,10 +33,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String weaponLevel="WeaponLevel";
 
 
-
-
-    //private static final String wamer="Gamer";
-    //private static final String colTeam="Team";
 
     private static final String gamerTable="Gamers";
     private static final String gamerID="GamerID";
@@ -63,9 +61,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String exitTime="ExitTime";
     private static final String timesReset="TimesReset";
 
-    private static final String viewWeaps="ViewWeaps";
 
-    public DatabaseHelper(Context context) {
+    public static DatabaseHelper getInstance(Context context) {
+        if (instance == null) {
+            instance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return instance;
+    }
+
+    private DatabaseHelper(Context context) {
         super(context, dbName, null,38);
     }
 
@@ -113,14 +117,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         weaponCurrentTime+" INTEGER, "+
                         weaponLevel+" INTEGER);");
 
-
-                /*colGamer+" INTEGER NOT NULL, "+
-                colTeam+" INTEGER NOT NULL "+
-                "FOREIGN KEY ("+colGamer+") "+
-                "REFERENCES "+gamerTable+" ("+gamerID+"), "+
-                "FOREIGN KEY ("+colTeam+") "+
-                "REFERENCES "+teamTable+" ("+teamID+"));");
-*/
                 initializeData(db, 1, 0.0,0, 1);
 
     }
@@ -153,24 +149,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public String getWeapons() {
-        SQLiteDatabase db=this.getReadableDatabase();
-        String tableString = String.format("Table %s:\n", weaponsTable);
-        Cursor allRows = db.rawQuery("SELECT * FROM " + weaponsTable, null);
-        if(allRows.moveToFirst()) {
-            String[] columnNames=allRows.getColumnNames();
-            do {
-                for(String name: columnNames) {
-                    tableString += String.format("%s: %s\n", name,
-                            allRows.getString(allRows.getColumnIndex(name)));
-                }
-                tableString += "\n";
-            }while (allRows.moveToNext());
-        }
-        allRows.close();
-        //db.close();
-        return tableString;
-    }
 
     public String [] getStats(SQLiteDatabase db) {
         db=this.getReadableDatabase();
@@ -188,7 +166,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             statsList.add(cursor.getString(cursor.getColumnIndex(timesReset)));
         } while (cursor.moveToNext());
 
-        //db.close();
         cursor.close();
 
         return statsList.toArray(new String[7]);
@@ -205,7 +182,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         } while (cursor.moveToNext());
 
-        //db.close();
         cursor.close();
         return columnArray.toArray(new String[10]);
     }
@@ -223,7 +199,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long startTime = currentTimeMillis();
 
-        //todo: this should all be change (or update) instead of insert
 
         db=this.getWritableDatabase();
         ContentValues cv=new ContentValues();
@@ -233,9 +208,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(lifetimeTotal, Stats.getLifetimeTotal().getValue());
         cv.put(prestigeXP, Stats.prestigeXP);
         cv.put(multiplier, Stats.multiplier);
-        //String startDate = (Stats.dateStarted.toString());
-        //String startDate = Stats.toString(Stats.dateStarted);
-        //String startDate = format
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
                 Locale.getDefault());
         String startDate = dateFormat.format(Stats.dateStarted);
@@ -246,10 +218,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Date date = new Date();
         String timeExit = dateFormat.format(date);
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //Date date = null;
-        //if (date != null)
-
 
         cv.put(exitTime, timeExit);
         cv.put(timesReset, Stats.timesReset);
@@ -267,7 +235,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(weaponBaseTime, weapons[i].getBaseTime());
             cv.put(weaponCurrentTime, weapons[i].getCurrentTime());
             cv.put(weaponLevel, weapons[i].getLevel());
-            //db.insert(weaponsTable, weaponID, cv);
             db.replace(weaponsTable, weaponID, cv);
 
             cv=new ContentValues();
@@ -275,7 +242,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(gamerName, weapons[i].getGamer().getName());
             cv.put(gamerBasePrice, weapons[i].getGamer().getBasePrice());
             cv.put(gamerLevel, weapons[i].getGamer().getLevel());
-            //System.out.println("Gamer: "+i+" level: "+weapons[i].getGamer().getLevel());
             cv.put(gamerUpgradeCost, weapons[i].getGamer().getUpgradeCost());
             cv.put(gamerTime, weapons[i].getGamer().getTime());
             db.replace(gamerTable, gamerID, cv);
@@ -290,17 +256,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.replace(teamTable, teamID, cv);
 
         }
-        //db.close();
 
         long endTime = currentTimeMillis();
 
-        System.out.println("Save time: "+ (endTime - startTime));
-    }
-
-    public void prestige(SQLiteDatabase db, double prestigeBonus,
-                         double lifeTotal, int resetNumber) {
-
-
+        //System.out.println("Save time: "+ (endTime - startTime));
     }
 
     public void initializeData(SQLiteDatabase db, double prestigeBonus,
@@ -438,8 +397,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(statsID, 1);
         cv.put(currentTotal, 0.0);
         cv.put(resetTotal, 0.0);
-        //cv.put(lifetimeTotal, 0.0);
-        //cv.put(prestigeXP, 1);
         cv.put(lifetimeTotal, lifeTotal);
         cv.put(prestigeXP, prestigeBonus);
         cv.put(multiplier, 1.12);
@@ -485,6 +442,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(teamBonus, bonus);
             db.replace(teamTable, teamID, cv);
         }
-        //db.close();
     }
 }

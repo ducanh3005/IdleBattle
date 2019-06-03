@@ -87,7 +87,7 @@
     <string name="prestige">Prestige</string>
     <string name="fullRestart">Full Restart</string>
     <string name="help">Help</string>
-    <string name="prestigeMessage">Prestige After Earning 1.00E+7 Since Reset</string>
+    <string name="prestigeMessage">Prestige After Earning $1.00E+7 Since Reset</string>
 
 
     <!--Away Message-->
@@ -99,11 +99,6 @@
 
     <!--Help Message-->
     <string name="helpTitle">Help</string>
-    <string name="helpMessage">
-        1. Weapons are used to earn money from tournaments.\n\n
-        2. Gamers use the weapons to automatically earn money.\n\n
-        3. Teams provide a bonus to the Gamer in their team.\n\n
-        4. Prestige to earn a bonus for weapon income.\n\n\n
-        Money can be earned even while away.</string>
+    <string name="helpMessage">1. Weapons are used to earn money from tournaments.\n\n2. Gamers use the weapons to automatically earn money.\n\n3. Teams provide a bonus to the Gamer in their team.\n\n4. Prestige to earn a bonus for weapon income.\n\n\nMoney can be earned even while away.</string>
 
 </resources>

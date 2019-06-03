@@ -250,7 +250,6 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-        <!--LinearLayout-->
         <RadioGroup
             android:id="@+id/footer"
             android:layout_width="match_parent"

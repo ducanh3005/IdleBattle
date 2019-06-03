@@ -12,7 +12,6 @@
         android:scrollbars="none"
         android:layout_marginTop="75dp"
         android:layout_marginBottom="50dp">
-        <!--marginBottom="105"-->
 
         <TableLayout
             android:layout_width="match_parent"

@@ -31,7 +31,7 @@ public class ThemesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Inflate the layout for this fragment
+
         final View view = inflater.inflate(R.layout.themes_fragment, container,
                 false);
 
@@ -42,8 +42,8 @@ public class ThemesFragment extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Stats.currentTotal.setValue(Stats.currentTotal.getValue() + 1000000000);
-                //ViewUtils Utils.changeToTheme(this, Utils.DarkRed);
+                Stats.currentTotal.setValue(Stats.currentTotal.getValue()
+                        + 1000000000);
             }
         });
         return view;

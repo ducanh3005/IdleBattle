@@ -6,7 +6,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--style="?android:attr/progressBarStyleHorizontal"-->
     <ProgressBar
         android:id="@+id/progress_bar"
         style="@android:style/Widget.ProgressBar.Horizontal"
@@ -16,9 +15,8 @@
         android:progressDrawable="@drawable/progress_bar_states"
         />
 
-    <!--Todo: progress_text to weapon_name-->
     <TextView
-        android:id="@+id/progress_text"
+        android:id="@+id/weapon_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
@@ -29,7 +27,6 @@
         android:textStyle="bold"
         tools:text="Progress"/>
 
-    <!--android:layout_height="230dp"-->
     <TextView
         android:id="@+id/weapon_income"
         android:layout_width="wrap_content"

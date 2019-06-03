@@ -24,20 +24,20 @@ public class GamersAndTeamsButton extends FrameLayout
 
     public GamersAndTeamsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        init(context);
     }
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init(Context context) {
         inflate(context, R.layout.gamers_and_teams_button, this);
 
         initComponents();
     }
 
     private void initComponents() {
-        upgradeButton = (FrameLayout) findViewById(R.id.upgrade_button);
-        name = (TextView) findViewById(R.id.name);
-        currentLevel = (TextView) findViewById(R.id.current_level);
-        upgradeCost = (TextView) findViewById(R.id.upgrade_price);
+        upgradeButton = findViewById(R.id.upgrade_button);
+        name = findViewById(R.id.name);
+        currentLevel = findViewById(R.id.current_level);
+        upgradeCost = findViewById(R.id.upgrade_price);
 
         upgradeButton.setOnClickListener(this);
 
@@ -55,14 +55,9 @@ public class GamersAndTeamsButton extends FrameLayout
         upgradeCost.setText(text);
     }
 
-    public FrameLayout getUpgradeButton() {
-        return upgradeButton;
-    }
-
     @Override
     public void onClick(View v) {
 
-        //ProgressBarButton p1 = WeaponsFragment.getProgressBarButton();
         ProgressBarButton p1 = getRootView().findViewById(R.id.progress_bar_1);
         ProgressBarButton p2 = getRootView().findViewById(R.id.progress_bar_2);
         ProgressBarButton p3 = getRootView().findViewById(R.id.progress_bar_3);
@@ -164,35 +159,5 @@ public class GamersAndTeamsButton extends FrameLayout
                 getLevel()));
         p.setWeaponIncome(Stats.toString(IdleViewModel.weaponsArray[i].
                 getCurrentIncome()));
-        //display income changes
-
-
-        //IdleViewModel.weaponsArray[i].setIncome();
     }
-
-    /*@Override
-    public void onClick(View v) {
-        //IdleView.upgradeGamer();
-        /*
-         * if currentTotal > upgrade cost
-         * { level++
-         *   upgradeCost();
-         *   bonuses
-         * }
-         *
-
-        //display new level
-        //display new upgrade cost
-
-        switch (getId()){
-            case R.id.gamersFragment:
-                System.out.println("gamers");
-                //IdleView.upgradeGamer(0);
-                break;
-            case R.id.teamsFragment:
-                System.out.println("teams");
-                //IdleView.upgradeTeam(0);
-                break;
-        }
-    }*/
 }

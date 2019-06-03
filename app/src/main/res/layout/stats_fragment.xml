@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/total_since_reset"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:layout_marginStart="4dp"
         android:textSize="16sp"
@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/lifetime_total"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_below="@id/total_since_reset"
@@ -31,7 +31,7 @@
     <TextView
         android:id="@+id/date_started"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_below="@id/lifetime_total"
@@ -39,22 +39,10 @@
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
 
-    <!--
-    <TextView
-        android:id="@+id/active_time_played"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_below="@id/date_started"
-        android:text="@string/activeTimePlayed"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"/>
-        -->
     <TextView
         android:id="@+id/times_reset"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_below="@id/date_started"
@@ -65,7 +53,7 @@
     <TextView
         android:id="@+id/prestigeMessage"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="50dp"

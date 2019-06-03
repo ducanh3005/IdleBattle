@@ -38,25 +38,16 @@ public class UpgradeButton extends FrameLayout
     }
 
     private void initComponents() {
-        upgradeWeaponBtn = (FrameLayout) findViewById(R.id.upgrade_weapon_btn);
-        upgradeWeaponPrice = (TextView) findViewById(R.id.weapon_upgrade_price);
-        weaponLevel = (TextView) findViewById(R.id.weapon_level);
+        upgradeWeaponBtn = findViewById(R.id.upgrade_weapon_btn);
+        upgradeWeaponPrice = findViewById(R.id.weapon_upgrade_price);
+        weaponLevel = findViewById(R.id.weapon_level);
 
         upgradeWeaponBtn.setOnClickListener(this);
-    }
-
-    public CharSequence getUpgradeWeaponPrice() {
-        return upgradeWeaponPrice.getText();
     }
 
     public void setUpgradeWeaponPrice(CharSequence text) {
         upgradeWeaponPrice.setText(text);
     }
-
-    public CharSequence getWeaponLevel() {
-        return weaponLevel.getText();
-    }
-
     public void setWeaponLevel(CharSequence text) {
         weaponLevel.setText(text);
     }
@@ -72,19 +63,7 @@ public class UpgradeButton extends FrameLayout
         upgradeClicked();
     }
 
-    /*todo: set up onclick listeners for upgrade buttons
-     * todo this should be in Upgrade button
-     * todo only display initial income in this WeaponsFragment
-     * functions in idleviewmodel
-     * weaponArray[0].upgrade();  ----> use switch cases
-     *   display currentTotal
-     *   display upgradePrice
-     *   display weaponIncome
-     *   display weaponLevel
-     *
-     */
     private void upgradeClicked() {
-        //Weapon weapons [] = IdleViewModel.weaponsArray;
 
         ProgressBarButton p1 = getRootView().findViewById(R.id.progress_bar_1);
         ProgressBarButton p2 = getRootView().findViewById(R.id.progress_bar_2);
@@ -95,7 +74,7 @@ public class UpgradeButton extends FrameLayout
         ProgressBarButton p7 = getRootView().findViewById(R.id.progress_bar_7);
         ProgressBarButton p8 = getRootView().findViewById(R.id.progress_bar_8);
         ProgressBarButton p9 = getRootView().findViewById(R.id.progress_bar_9);
-        ProgressBarButton p10 = getRootView().findViewById(R.id.progress_bar_10);
+        ProgressBarButton p10=getRootView().findViewById(R.id.progress_bar_10);
 
         switch (getId()) {
             case R.id.upgrade_weapon_btn_1:

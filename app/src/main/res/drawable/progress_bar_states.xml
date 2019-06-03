@@ -6,9 +6,6 @@
             android:tint="#444444"
             android:centerY="0.75"
             android:angle="270">
-
-            <!--444444-->
-
         </shape>
     </item>
 
@@ -18,8 +15,6 @@
                 android:centerY="0.75"
                 android:tint="#125688"
                 android:angle="270">
-
-                <!--999999-->
             </shape>
         </clip>
     </item>
