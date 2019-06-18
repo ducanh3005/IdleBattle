@@ -1,10 +1,22 @@
 # IdleBattleRoyale
 
+## Download
 [Play Store](https://play.google.com/store/apps/details?id=com.ballardsoftware.idlebattle)
 
+## Description
 IdleBattleRoyale is an idle incremental game developed for Android. The goal of this game is simple: earn as much money as possible. 
 
-# Rules
+![Screenshot1](docs/screenshots/device-2019-06-03-140406.png)
+
+
+
+![Screenshot2](docs/screenshots/device-2019-06-03-140717.png)
+
+
+
+![Screenshot3](docs/screenshots/device-2019-06-03-140613.png)
+
+## Rules
 1. Weapons are used to earn money from tournaments. At the start you will have to do this yourself by clicking the weapon buttons.
 
 2. Gamers use weapons to automatically earn money. This mean they click for you. At first they have a 10 second delay before each click, but they can be upgraded to become faster.
@@ -15,7 +27,7 @@ IdleBattleRoyale is an idle incremental game developed for Android. The goal of 
 
 5. Money is earned even while you are away. After you purchased a Gamer, they will continue to earn money when the game is closed.
 
-# Tutorial
+## Tutorial
 Start by clicking the Fist button to earn money. 
 
 Once you make enough you can level up by clicking the upgrade button to increase the income for that weapon.
@@ -32,7 +44,7 @@ It is not recommended, except for testing purposes.
 
 The Full Restart button resets the game to initial install values. You will lose all progress.
 
-# Future Plans
+## Future Plans
 
 * Values for everyting will be reworked to keep the game more entertaining. 
 
