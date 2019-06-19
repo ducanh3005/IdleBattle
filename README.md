@@ -6,15 +6,7 @@
 ## Description
 IdleBattleRoyale is an idle incremental game developed for Android. The goal of this game is simple: earn as much money as possible. 
 
-![Screenshot1](docs/screenshots/device-2019-06-03-140406.png)
-
-
-
-![Screenshot2](docs/screenshots/device-2019-06-03-140717.png)
-
-
-
-![Screenshot3](docs/screenshots/device-2019-06-03-140613.png)
+![Screenshot1](docs/screenshots/screenshot1.png)  ![Screenshot2](docs/screenshots/screenshot2.png)  ![Screenshot3](docs/screenshots/screenshot3.png)
 
 ## Rules
 1. Weapons are used to earn money from tournaments. At the start you will have to do this yourself by clicking the weapon buttons.
