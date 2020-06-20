@@ -88,7 +88,7 @@
     <string name="fullRestart">Full Restart</string>
     <string name="help">Help</string>
     <string name="prestigeMessage">Prestige After Earning $1.00E+7 Since Reset</string>
-
+    <string name="prestigeXP">Prestige XP: %1s</string>
 
     <!--Away Message-->
     <string name="away">You Were Away For</string>

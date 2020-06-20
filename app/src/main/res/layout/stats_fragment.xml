@@ -51,13 +51,24 @@
         android:textSize="16sp"/>
 
     <TextView
+        android:id="@+id/prestigeXP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/times_reset"
+        android:text="@string/prestigeXP"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+
+    <TextView
         android:id="@+id/prestigeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/times_reset"
+        android:layout_below="@id/prestigeXP"
         android:text="@string/prestigeMessage"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>

@@ -3,6 +3,7 @@ package com.ballardsoftware.idlebattle.ViewModel;
 import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import com.ballardsoftware.idlebattle.Model.Gamer;
 import com.ballardsoftware.idlebattle.Model.Team;
 import com.ballardsoftware.idlebattle.Model.Weapon;
+import com.ballardsoftware.idlebattle.R;
 import com.ballardsoftware.idlebattle.Utilities.DatabaseHelper;
 import com.ballardsoftware.idlebattle.Utilities.Stats;
 import com.ballardsoftware.idlebattle.View.CustomViews.HelpDialog;
@@ -196,6 +198,7 @@ public class IdleViewModel extends AndroidViewModel {
     }
 
     public void firstLaunch(Activity activity) {
+        /*
         final String PREFS_NAME = "PrefsFile";
 
         SharedPreferences settings = activity.getSharedPreferences(PREFS_NAME, 0);
@@ -205,6 +208,18 @@ public class IdleViewModel extends AndroidViewModel {
             dialog.showDialog(activity);
             settings.edit().putBoolean(
                     "first_time_launched", false).apply();
+        }
+
+         */
+        SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+        //boolean defaultValue = true;
+        boolean firstTime = sharedPref.getBoolean("first_time_launched", true);
+        if (firstTime) {
+            HelpDialog dialog = new HelpDialog();
+            dialog.showDialog(activity);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("first_time_launched", false);
+            editor.apply();
         }
     }
 

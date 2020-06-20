@@ -77,10 +77,6 @@ public class MainActivity extends AppCompatActivity
 
         Stats.getCurrentTotal().observe(this, totalObserver);
 
-
-
-
-
     }
     private void setupViewPager(ViewPager viewPager) {
         viewPager.setOffscreenPageLimit(6);
